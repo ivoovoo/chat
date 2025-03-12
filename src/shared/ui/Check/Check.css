@@ -1,0 +1,7 @@
+.check {
+    display: flex;
+    gap: 0 8px;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+}

@@ -1,0 +1,15 @@
+@import url(./reset.css);
+@import url(./fonts.css);
+@import url(./themes/light.css);
+
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+
+.row {
+    padding-left: 480px;
+}

@@ -1,0 +1,52 @@
+.switcher {
+    max-width: 266px;
+    width: 100%;
+    height: 45px;
+    border: 1px solid var(--border-color-2);
+    border-radius: 8px;
+    position: relative;
+    padding: 4px;
+    display: flex;
+}
+
+.switcher__button {
+    height: 100%;
+    width: 50%;
+    position: relative;
+    z-index: 1;
+    transition: .3s all;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    gap: 0 12px;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
+    fill: var(--secondary-color);
+}
+
+.switcher__button svg {
+    flex-shrink: 0;
+}
+
+.switcher__background {
+    background: var(--background-1);
+    position: absolute;
+    width: calc(50% - 4px);
+    top: 4px;
+    bottom: 4px;
+    border-radius: 8px;
+    transition: .3s all;
+    left: calc(100% - 4px);
+    transform: translateX(-100%);
+}
+
+.switcher__background.position {
+    left: 4px;
+    transform: none;
+}
+
+.switcher__button.active {
+    color: var(--color-3);
+    fill: var(--color-3);
+}
