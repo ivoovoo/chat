@@ -54,3 +54,11 @@
 .chat-form__button.send {
     right: 16px;
 }
+
+
+@media (max-width:768px) {
+    .chat-form__clear {
+        font-size: 14px;
+        gap: 0 6px;
+    }
+}

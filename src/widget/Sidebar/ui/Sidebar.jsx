@@ -7,11 +7,16 @@ import "./Sidebar.css";
 import Check from "../../../shared/ui/Check/Check";
 import Switcher from "../../../shared/ui/Switcher/Switcher";
 import Sprite from "../../../shared/ui/Sprite/Sprite";
+import Button from "./Button";
+import { useSelector } from "react-redux";
+import { classNames } from "../../../shared/lib/classNames/classNames";
 
 const Sidebar = () => {
   const [switcher, changeSwitcher] = useState(true);
+  const [open, setOpen] = useState(false)
+  const sidebar = useSelector((s) => s.sidebar);
   return (
-    <aside className="sidebar">
+    <aside className={classNames("sidebar", [], {open})}>
       <Link className="sidebar__logo" to={"/"}>
         CHATEX
       </Link>
@@ -21,9 +26,9 @@ const Sidebar = () => {
         list={['Version GPT 3.5F',"Version", "VVVV"]}
       />
       <div className="sidebar__checks">
-        <Check>Show resource-link</Check>
-        <Check>Show proposed prompt</Check>
-        <Check>Dark mode</Check>
+        <Check className='sidebar__check'>Show resource-link</Check>
+        <Check className='sidebar__check'>Show proposed prompt</Check>
+        <Check className='sidebar__check'>Dark mode</Check>
       </div>
 
       <Switcher
@@ -43,6 +48,7 @@ const Sidebar = () => {
           </>
         }
       />
+      <Button open={open} setOpen={setOpen} />
     </aside>
   );
 };

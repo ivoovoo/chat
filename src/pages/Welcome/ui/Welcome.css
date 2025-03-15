@@ -22,15 +22,13 @@
 
 .welcome__content {
     margin-top: 64px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 16px 24px;
-
+flex-wrap: wrap;
 }
 
 .welcome__box {
-    width: 100%;
-
+    width: calc((100% / 3) - 24px);
     flex-grow: 1;
     padding: 20px 24px;
     border-radius: 12px;
@@ -69,4 +67,47 @@
 
 .welcome__link {
     text-decoration: underline;
+}
+
+
+@media (max-width:768px) {
+    .welcome__content {
+        gap: 15px;
+        margin-top: 32px;
+    }
+
+    
+
+    .welcome__box {
+        width: calc((100% / 3) - 15px);
+        padding: 14px;
+    }
+
+    .welcome__box.pb {
+        padding-bottom: 14px;
+    }
+
+    .welcome__box-title {
+        font-size: 16px;
+    }
+
+    .welcome__text,
+    .welcome__link {
+        font-size: 12px;
+    }
+}
+
+
+@media (max-width:500px) {
+
+    .welcome__box-title {
+        font-size: 13px;
+    }
+
+    .welcome__text,
+    .welcome__link {
+        font-size: 10px;
+    }
+
+
 }
