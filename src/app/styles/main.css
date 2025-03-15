@@ -10,6 +10,24 @@ body {
     color: var(--primary-color);
 }
 
+.container {
+    width: 100%;
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 .row {
     padding-left: 480px;
 }
+
+.row__content {
+    display: flex;
+    height: calc(100vh);
+    overflow: scroll;
+    flex-direction: column;
+    padding-top: 92px;
+    gap: 30px;
+    padding-bottom: 40px;
+}
+

@@ -3,6 +3,7 @@ import Header from "../../../widget/Header/ui/Header";
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "../../../widget/Sidebar";
 import { Highlight, themes } from "prism-react-renderer";
+import { ChatForm } from "../../../features/ChatForm";
 
 const pythonCode = `
 #include <iostream> 
@@ -51,21 +52,21 @@ switch(op) {
 //       types: ["string"],
 //       style: {
 //         color: "#50fa7b", // Цвет строк
-//         fontWeight: "regular", 
+//         fontWeight: "regular",
 //       },
 //     },
 //     {
 //       types: ["variable", "parameter"],
 //       style: {
 //         color: "#DF3079", // Цвет переменных
-//         fontWeight: "regular", 
+//         fontWeight: "regular",
 //       },
 //     },
 //     {
 //       types: ["function"],
 //       style: {
 //         color: "#F22C3D", // Цвет функций
-//         fontWeight: "regular", 
+//         fontWeight: "regular",
 //       },
 //     },
 //   ],
@@ -100,7 +101,10 @@ const Layout = () => {
           )}
         </Highlight> */}
         <Header />
-        <Outlet />
+        <div className="container">
+          <Outlet />
+        </div>
+        <ChatForm />
       </div>
     </div>
   );

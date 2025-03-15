@@ -1,8 +1,8 @@
-import { MainPage } from "../../pages/MainPage";
+import { Welcome } from "../../pages/Welcome";
 
 export const routerConfig = [
     {
         path:'/',
-        element:<MainPage />
+        element:<Welcome />
     }
 ]

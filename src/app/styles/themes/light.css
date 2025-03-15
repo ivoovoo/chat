@@ -1,9 +1,10 @@
 :root {
     --page-background:#fff;
     --header-background: #ffffff4d;
+    --message-background: #f9f9f9;
     --background-1:#000;
+    --background-2:#F8F8F8;
 
-    
 
     /* colors */
 
@@ -15,6 +16,7 @@
 
     /* border */
 
-    --border-color-1:rgb(209, 213, 219);
-    --border-color-2:rgb(232, 232, 232);
+    --border-color-1:#d1d5db;
+    --border-color-2:#e8e8e8;
+    --border-color-3:#e7e7e7;
 }
