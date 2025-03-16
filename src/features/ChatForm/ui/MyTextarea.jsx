@@ -20,7 +20,6 @@ const MyTextarea = () => {
         const scrollPosition = rowContent.scrollTop + rowContent.offsetHeight;
 
         if(scrollHeight > scrollPosition) {
-            console.log('sadsa')
             rowContent.scrollTop = scrollHeight
         }
       };

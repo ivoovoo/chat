@@ -4,7 +4,8 @@ const sidebarSlice = createSlice({
   name: "SIDEBAR",
   initialState: false,
   reducers: {
-    changeState: (state) => {
+    changeState: (state, action) => {
+      if (action.payload) return action.payload;
       return !state;
     },
   },
