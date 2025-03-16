@@ -37,7 +37,7 @@
 
 .chat-form__textarea:focus {
     border: 1px solid var(--border-color-3);
-    
+
 }
 
 .chat-form__input::placeholder {
@@ -61,14 +61,32 @@
     right: 44px;
 }
 
-.chat-form__button.send {
+.chat-form__button.send,
+.chat-form__button.stop {
     right: 16px;
 }
 
+
+.chat-form__loader {
+    animation: rotation 1s linear infinite;
+    position: absolute;
+    left: 16px;
+    bottom: 17px;
+}
 
 @media (max-width:768px) {
     .chat-form__clear {
         font-size: 14px;
         gap: 0 6px;
+    }
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }

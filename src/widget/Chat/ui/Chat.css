@@ -1,0 +1,37 @@
+.chat {
+    flex-grow: 1;
+    padding-top: 20px;
+}
+
+.chat__messages {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chat__message {
+    padding: 24px 0;
+    font-size: 18px;
+}
+
+.chat__user-message {
+    color: var(--secondary-color);
+    text-align: end;
+    display: flex;
+    gap: 0 16px;
+    align-items: flex-end;
+    justify-content: end;
+}
+
+.chat__message-flex {
+    display: flex;
+    gap: 12px ;
+}
+.chat__date {
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.chat__user-message .chat__date {
+    margin-bottom: 8px;
+}

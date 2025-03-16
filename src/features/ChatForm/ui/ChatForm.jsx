@@ -7,8 +7,7 @@ import "./ChatForm.css";
 const ChatForm = () => {
   const [files, setFiles] = useState([]);
   useEffect(() => {
-    const content = document.querySelector(".row__content");
-    content.scrollTo({ top: content.scrollHeight, behavior: "smooth" });
+
   }, [files]);
 
   return (

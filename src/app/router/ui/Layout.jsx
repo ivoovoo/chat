@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import { Sidebar } from "../../../widget/Sidebar";
 import { Highlight, themes } from "prism-react-renderer";
 import { ChatForm } from "../../../features/ChatForm";
+import Chat from "../../../widget/Chat/ui/Chat";
 
 const pythonCode = `
 #include <iostream> 
@@ -69,6 +70,29 @@ switch(op) {
 //         fontWeight: "regular",
 //       },
 //     },
+{
+  /* <Highlight code={pythonCode} theme={customTheme} language="cpp">
+  {({ style, tokens, getLineProps, getTokenProps }) => (
+    <pre
+      style={{
+        ...style,
+        padding: "12px 16px ",
+        borderRadius: "12px",
+        fontFamily:'Inter',
+        fontSize:'16px'
+      }}
+    >
+      {tokens.map((line, i) => (
+        <div key={i} {...getLineProps({ line, key: i })}>
+          {line.map((token, key) => (
+            <span key={key} {...getTokenProps({ token })} />
+          ))}
+        </div>
+      ))}
+    </pre>
+  )}
+</Highlight> */
+}
 //   ],
 // };
 
@@ -78,32 +102,10 @@ const Layout = () => {
   return (
     <div className="row">
       <Sidebar />
-      <div className="row__content" >
-        {/* <Highlight code={pythonCode} theme={customTheme} language="cpp">
-          {({ style, tokens, getLineProps, getTokenProps }) => (
-            <pre
-              style={{
-                ...style,
-                padding: "12px 16px ",
-                borderRadius: "12px",
-                fontFamily:'Inter',
-                fontSize:'16px'
-              }}
-            >
-              {tokens.map((line, i) => (
-                <div key={i} {...getLineProps({ line, key: i })}>
-                  {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token })} />
-                  ))}
-                </div>
-              ))}
-            </pre>
-          )}
-        </Highlight> */}
+      <div className="row__content">
         <Header />
-        <div className="container">
-          <Outlet />
-        </div>
+        {/* <Outlet /> */}
+        <Chat />
         <ChatForm />
       </div>
     </div>

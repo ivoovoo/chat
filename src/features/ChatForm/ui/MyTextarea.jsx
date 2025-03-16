@@ -1,27 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
+import { scrollPosition } from "../../../shared/lib/scrollPosition/scrollPosition";
 
 function adjustHeight(el) {
   el.style.height = "auto";
   el.style.height = el.scrollHeight + "px";
 }
 
-const MyTextarea = () => {
-  const [text, setText] = useState("");
+const MyTextarea = ({ text, setText }) => {
   const textareaRef = useRef(null);
 
   useEffect(() => {
     const textarea = textareaRef.current;
-    const rowContent = document.querySelector(".row__content");
     if (textarea) {
       const handleInput = () => {
         adjustHeight(textarea);
-
-        const scrollHeight = rowContent.scrollHeight;
-        const scrollPosition = rowContent.scrollTop + rowContent.offsetHeight;
-
-        if(scrollHeight > scrollPosition) {
-            rowContent.scrollTop = scrollHeight
-        }
+        scrollPosition();
       };
       textarea.addEventListener("input", handleInput);
       return () => textarea.removeEventListener("input", handleInput);

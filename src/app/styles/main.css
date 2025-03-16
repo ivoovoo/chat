@@ -24,11 +24,10 @@ body {
 .row__content {
     display: flex;
     flex-grow: 1;
-    height: calc(100vh - 92px);
+    height: calc(100dvh - 92px);
     overflow-y: auto;
     flex-direction: column;
     gap: 30px;
-    padding-bottom: 20px;
     margin-top: 92px;
 }
 

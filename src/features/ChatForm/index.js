@@ -1,3 +1,3 @@
 import ChatForm from "./ui/ChatForm";
-
-export {ChatForm}
+import chatFormSlice, {finishGenerate} from "./model/chatFormSlice";
+export { ChatForm, chatFormSlice, finishGenerate };

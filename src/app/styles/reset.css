@@ -81,7 +81,7 @@ input[type="submit"] {
     background-color: transparent;
     background: none;
     cursor: pointer;
-    
+
 }
 
 input:focus,
@@ -95,6 +95,14 @@ button:active {
 button::-moz-focus-inner {
     padding: 0;
     border: 0;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:focus-visible {
+    outline: auto;
 }
 
 label {
