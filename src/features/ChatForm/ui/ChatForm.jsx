@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Top from "./Top";
 import Message from "./Message";
 
@@ -6,14 +6,21 @@ import "./ChatForm.css";
 
 const ChatForm = () => {
   const [files, setFiles] = useState([]);
+  useEffect(() => {
+    const content = document.querySelector(".row__content");
+    content.scrollTo({ top: content.scrollHeight, behavior: "smooth" });
+  }, [files]);
 
   return (
     <div className="chat-form">
       <div className="container">
         <Top />
-        <div className="chat-form__files" style={{display:'flex',gap:'10px'}}>
+        <div
+          className="chat-form__files"
+          style={{ display: "flex", gap: "10px" }}
+        >
           {files.map((file) => (
-            <div >
+            <div>
               {file.type.startsWith("image/") && (
                 <div>
                   <img

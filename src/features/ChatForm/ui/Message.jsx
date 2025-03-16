@@ -3,16 +3,18 @@ import Sprite from "../../../shared/ui/Sprite/Sprite";
 import MyTextarea from "./MyTextarea";
 import { useDropzone } from "react-dropzone";
 
-const Message = ({setFiles}) => {
-
+const Message = ({ setFiles }) => {
   const onDrop = (acceptedFiles) => {
     setFiles(acceptedFiles);
   };
 
-
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: "audio/*,image/*,video/*", // Поддержка аудио и других файлов
+    accept: {
+      "image/*": [],
+      "video/*": [],
+      "audio/*": [],
+    }, // Поддержка аудио и других файлов
   });
 
   return (

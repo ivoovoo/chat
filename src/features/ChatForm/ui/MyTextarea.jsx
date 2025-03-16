@@ -1,23 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDropzone } from "react-dropzone";
 import TextareaAutosize from "react-textarea-autosize";
+
+function addSize() {
+  const content = document.querySelector(".row__content");
+  this.style.height = "44px";
+  this.style.height = this.scrollHeight + "px";
+  if (this.scrollTop > 0) {
+    this.style.height = this.scrollHeight + "px";
+    content.scrollTo({ top: content.scrollHeight, behavior: "smooth" });
+  }
+}
 
 const MyTextarea = () => {
   const [text, setText] = useState("");
+  const textareaRef = useRef(null);
 
-
-
-
-  const handleTextChange = (e) => {
-    setText(e.target.value);
-  };
+  useEffect(() => {
+    textareaRef.current.addEventListener("input", addSize);
+  }, []);
   return (
-    <TextareaAutosize
+    <textarea
       value={text}
       className="chat-form__textarea"
-      onChange={handleTextChange}
-      placeholder="Send a message "
-      minRows={1}
+      onChange={(e) => setText(e.target.value)}
+      placeholder="Send a message"
+      ref={textareaRef}
     />
   );
 };

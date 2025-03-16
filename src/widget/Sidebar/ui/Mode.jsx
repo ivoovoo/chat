@@ -3,7 +3,7 @@ import { mode } from "../config/mode";
 import ModeItem from "./ModeItem";
 
 const Mode = () => {
-  const [modeItems, setModeItems] = useState(mode);
+  const [modeItems, setModeItems] = useState([]);
 
   const handleClick = (i) => {
     const newModeItems = modeItems.map((item, index) => {
@@ -18,7 +18,7 @@ const Mode = () => {
   };
   return (
     <div className="sidebar__mode">
-      <h4 className="sidebar__mode-title">Mode</h4>
+     {modeItems.length > 0 && <h4 className="sidebar__mode-title">Mode</h4>}
       <div className="sidebar__items">
         {modeItems.map(({ title, text, active }, index) => (
           <ModeItem
