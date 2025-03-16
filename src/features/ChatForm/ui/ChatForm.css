@@ -21,14 +21,14 @@
 
 .chat-form__textarea {
     width: 100%;
-    height: 44px;
+    height: auto;
     min-height: 44px;
     font-size: 16px;
     box-sizing: border-box;
     border: 1px solid var(--border-color-3);
     border-radius: 8px;
     background: var(--message-background);
-    padding: 11.5px 72px 11.5px 44px;
+    padding: 10.5px 72px 4.5px 44px;
     resize: none;
     overflow: hidden;
     line-height: 1.2;
@@ -37,10 +37,13 @@
 
 .chat-form__textarea:focus {
     border: 1px solid var(--border-color-3);
+    
 }
 
 .chat-form__input::placeholder {
     color: var(--secondary-color);
+    font-size: 16px;
+
 }
 
 .chat-form__button {

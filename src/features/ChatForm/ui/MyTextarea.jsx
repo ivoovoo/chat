@@ -1,14 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import TextareaAutosize from "react-textarea-autosize";
 
-function addSize() {
-  const content = document.querySelector(".row__content");
-  this.style.height = "44px";
-  this.style.height = this.scrollHeight + "px";
-  if (this.scrollTop > 0) {
-    this.style.height = this.scrollHeight + "px";
-    content.scrollTo({ top: content.scrollHeight, behavior: "smooth" });
-  }
+function adjustHeight(el) {
+  el.style.height = "auto";
+  el.style.height = el.scrollHeight + "px";
 }
 
 const MyTextarea = () => {
@@ -16,10 +10,28 @@ const MyTextarea = () => {
   const textareaRef = useRef(null);
 
   useEffect(() => {
-    textareaRef.current.addEventListener("input", addSize);
+    const textarea = textareaRef.current;
+    const rowContent = document.querySelector(".row__content");
+    if (textarea) {
+      const handleInput = () => {
+        adjustHeight(textarea);
+
+        const scrollHeight = rowContent.scrollHeight;
+        const scrollPosition = rowContent.scrollTop + rowContent.offsetHeight;
+
+        if(scrollHeight > scrollPosition) {
+            console.log('sadsa')
+            rowContent.scrollTop = scrollHeight
+        }
+      };
+      textarea.addEventListener("input", handleInput);
+      return () => textarea.removeEventListener("input", handleInput);
+    }
   }, []);
+
   return (
     <textarea
+      rows={1}
       value={text}
       className="chat-form__textarea"
       onChange={(e) => setText(e.target.value)}
