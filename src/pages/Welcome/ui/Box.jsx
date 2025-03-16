@@ -14,13 +14,9 @@ const Box = ({ icon, title, to, children }) => {
 
       {title && <h5 className="welcome__box-title">{title}</h5>}
 
-      {to ? (
-        <Link className="welcome__link" to={to}>
-          {children}
-        </Link>
-      ) : (
-        <p className="welcome__text">{children}</p>
-      )}
+      <Link className="welcome__link" to={to}>
+        {children}
+      </Link>
     </div>
   );
 };

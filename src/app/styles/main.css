@@ -18,42 +18,24 @@ body {
 }
 
 .row {
-    padding-left: 480px;
+    display: flex;
 }
 
 .row__content {
     display: flex;
-    height: calc(100vh);
-    overflow: scroll;
+    flex-grow: 1;
+    height: calc(100vh - 92px);
+    overflow-y: auto;
     flex-direction: column;
-    padding-top: 92px;
     gap: 30px;
     padding-bottom: 40px;
+    margin-top: 92px;
 }
 
 
-
-
-@media (max-width:1400px) {
-
-    .row {
-        padding-left: 340px;
-    }
-}
-
-@media (max-width:1100px) {
-    
-    .row {
-        padding-left: 90px;
-    }
-}
 
 
 @media (max-width:520px) {
-    .row {
-        padding-left: 40px;
-    }
-
     .container {
         padding: 0 10px;
     }

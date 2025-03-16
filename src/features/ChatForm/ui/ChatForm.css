@@ -6,6 +6,7 @@
 
 .chat-form__top {
     display: flex;
+    margin-bottom: 12px;
 }
 
 .chat-form__clear {
@@ -16,18 +17,23 @@
 
 .chat-form__message {
     position: relative;
-    margin-top: 12px;
 }
 
-.chat-form__input {
-    height: 44px;
+.chat-form__textarea {
     width: 100%;
     font-size: 16px;
     box-sizing: border-box;
-    border: 1px solid var(--message-border);
+    border: 1px solid var(--border-color-3);
     border-radius: 8px;
     background: var(--message-background);
-    padding: 0 72px 0 44px;
+    padding: 12.5px 72px 12.5px 44px;
+    resize: none;
+    overflow: hidden;
+}
+
+
+.chat-form__textarea:focus {
+    border: 1px solid var(--border-color-3);
 }
 
 .chat-form__input::placeholder {
@@ -37,10 +43,8 @@
 .chat-form__button {
     width: 20px;
     height: 20px;
-    top: 50%;
     position: absolute;
-    transform: translateY(-50%);
-
+    bottom: 17px;
 }
 
 .chat-form__button.file {

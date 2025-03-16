@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Sprite from "../../../shared/ui/Sprite/Sprite";
+import MyTextarea from "./MyTextarea";
+import { useDropzone } from "react-dropzone";
 
-const Message = () => {
+const Message = ({setFiles}) => {
+
+  const onDrop = (acceptedFiles) => {
+    setFiles(acceptedFiles);
+  };
+
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "audio/*,image/*,video/*", // Поддержка аудио и других файлов
+  });
+
   return (
     <form className="chat-form__message">
-      <button className="chat-form__button file">
+      <div {...getRootProps()} className="chat-form__button file">
+        <input {...getInputProps()} />
         <Sprite icon={"file"} width={20} height={20} />
-      </button>
-      <input className="chat-form__input" placeholder="Send a message " />
+      </div>
+      <MyTextarea />
       <button className="chat-form__button microphone">
         <Sprite icon={"microphone"} width={20} height={20} />
       </button>

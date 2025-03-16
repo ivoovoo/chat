@@ -4,16 +4,25 @@ import Navigation from "./Navigation";
 import { Link } from "react-router-dom";
 
 import "./Header.css";
-
+import Button from "../../Sidebar/ui/Button";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const activeNumber = Math.floor(Math.random() * (150000 - 35000 + 1)) + 35000;
+  const formattedNumber = activeNumber
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+
+  
   return (
     <header className="header">
       <div className="header__left">
+        <Button />
         <img className="header__logo" src={logo} alt="logo" />
         <div className="header__left-wrapper">
           <span>Standard plan</span>
-          <div className="header__active">Active 35 000 people</div>
+          <div className="header__active">Active {formattedNumber} people</div>
         </div>
       </div>
       <Navigation />

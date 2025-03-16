@@ -78,7 +78,7 @@ const Layout = () => {
   return (
     <div className="row">
       <Sidebar />
-      <div className="row__content" style={{ paddingTop: "100px" }}>
+      <div className="row__content" >
         {/* <Highlight code={pythonCode} theme={customTheme} language="cpp">
           {({ style, tokens, getLineProps, getTokenProps }) => (
             <pre

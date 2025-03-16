@@ -56,7 +56,6 @@ flex-wrap: wrap;
     font-weight: 500;
 }
 
-.welcome__text,
 .welcome__link {
     color: var(--secondary-color);
     font-size: 14px;
@@ -65,9 +64,7 @@ flex-wrap: wrap;
     display: block;
 }
 
-.welcome__link {
-    text-decoration: underline;
-}
+
 
 
 @media (max-width:768px) {
@@ -91,9 +88,11 @@ flex-wrap: wrap;
         font-size: 16px;
     }
 
-    .welcome__text,
     .welcome__link {
         font-size: 12px;
+    }
+    .welcome {
+        padding-top: 40px;
     }
 }
 

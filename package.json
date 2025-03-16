@@ -11,10 +11,12 @@
     "prism-react-renderer": "^2.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-dropzone": "^14.3.8",
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.30.0",
     "react-scripts": "5.0.1",
     "react-syntax-highlighter": "^15.6.1",
+    "react-textarea-autosize": "^8.5.8",
     "shiki": "^0.14.2",
     "web-vitals": "^2.1.4"
   },
