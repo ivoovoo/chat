@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { classNames } from "../../../shared/lib/classNames/classNames";
 import Hammer from "hammerjs";
 import { changeState } from "../model/sidebarSlice";
+import { changeTheme, THEME_CHATEX_VALUE } from "../../../shared/model/themeSlice";
 const Sidebar = () => {
   const [switcher, changeSwitcher] = useState(true);
   const dispatch = useDispatch();
@@ -46,7 +47,15 @@ const Sidebar = () => {
         <div className="sidebar__checks">
           <Check className="sidebar__check">Show resource-link</Check>
           <Check className="sidebar__check">Show proposed prompt</Check>
-          <Check className="sidebar__check">Dark mode</Check>
+          <Check
+            className="sidebar__check"
+            checked={localStorage.getItem(THEME_CHATEX_VALUE) == 'dark'}
+            onClick={(bool) => {
+              dispatch(changeTheme(bool ? "dark" : "light"));
+            }}
+          >
+            Dark mode
+          </Check>
         </div>
 
         <Switcher

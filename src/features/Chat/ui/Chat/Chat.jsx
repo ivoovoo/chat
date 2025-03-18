@@ -17,7 +17,6 @@ const Chat = () => {
   const messagesRef = useRef();
 
   useEffect(() => {
-    console.log(heights);
     const chatMessagesTag = messagesRef.current;
     if (!chatActiveName) chatMessagesTag.style.height = "auto";
     else if (heights[chatActiveName]) {
@@ -27,40 +26,13 @@ const Chat = () => {
       });
     }
   }, [chatActiveName]);
+
   useEffect(() => {
-    if (changedScroll) {
-      const chatMessagesTag = messagesRef.current;
-      const chatTag = chatRef.current;
+    chatRef.current.scrollTo({
+      top: messagesRef.current.scrollHeight,
+    });
+  }, [chat]);
 
-      if (chatMessagesTag && chat[chatActiveName].length > 1) {
-        const boxes = [...chatMessagesTag.children];
-
-        const lastBoxHeight = boxes[boxes.length - 2].offsetHeight;
-
-        const messagesHeight = chatMessagesTag.offsetHeight;
-        const chatTagHeight = chatTag.offsetHeight - 20;
-
-        console.log({ lastBoxHeight, chatTagHeight, messagesHeight });
-
-        const num = chatMessagesTag.offsetHeight;
-
-
-        if (lastBoxHeight > chatTagHeight) {
-          chatMessagesTag.style.height =
-            num + chatTagHeight + (lastBoxHeight - chatTagHeight) + 8 + "px";
-        } else chatMessagesTag.style.height = num + lastBoxHeight + 8 + "px";
-
-        heights[chatActiveName] = chatMessagesTag.offsetHeight;
-
-        chatTag.scrollTo({
-          top: chatTag.scrollHeight + 300,
-          behavior: "smooth",
-        });
-      }
-
-      setChangedScroll(false);
-    }
-  }, [changedScroll, chat]);
   return (
     <div className="chat" ref={chatRef}>
       <div className="container chat__messages" ref={messagesRef}>
@@ -84,7 +56,7 @@ const Chat = () => {
       </div>
 
       <Form
-        changedScrollFunc={() => setChangedScroll(true)}
+        changedScrollFunc={() => {}}
         setGenerate={setGenerate}
         generate={generate}
       />

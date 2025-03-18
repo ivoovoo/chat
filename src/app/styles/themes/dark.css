@@ -1,7 +1,7 @@
-.app.light {
-    --page-background:#fff;
-    --header-background: #ffffff4d;
-    --message-background: #f9f9f9;
+.app.dark {
+    --page-background:#2C2C2E;
+    --header-background: #6C6C6D;
+    --message-background: #F9F9F9;
     --background-1:#000;
     --background-2:#F8F8F8;
 

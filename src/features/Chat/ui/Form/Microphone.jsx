@@ -1,25 +1,31 @@
 import { useState, useEffect, useRef } from "react";
 import Sprite from "../../../../shared/ui/Sprite/Sprite";
 
+function adjustHeight(el) {
+  el.style.height = "auto";
+  if (el.scrollHeight > 150) {
+    el.style.height = "150px";
+    el.style.overflowY = "scroll";
+  } else {
+    el.style.height = el.scrollHeight + "px";
+    el.style.overflowY = "hidden";
+  }
+}
 const Microphone = ({ setText }) => {
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef(null);
 
   useEffect(() => {
-    if (!("webkitSpeechRecognition" in window)) {
-      alert("Ваш браузер не поддерживает голосовой ввод.");
-      return;
-    }
-
     recognitionRef.current = new window.webkitSpeechRecognition();
     recognitionRef.current.continuous = false; // Чтобы не было дублирования
     recognitionRef.current.interimResults = false; // Отключает промежуточные результаты
-    recognitionRef.current.lang = "ru-RU";
+    recognitionRef.current.lang = navigator.language || navigator.userLanguage;
 
     recognitionRef.current.onresult = (event) => {
       const result = event.results[0][0].transcript;
-      console.log(result)
+      console.log(result);
       setText(result);
+      adjustHeight();
     };
 
     recognitionRef.current.onerror = (event) => {
