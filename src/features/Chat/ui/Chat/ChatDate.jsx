@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { months } from "../config/months";
+import { months } from "../../config/months";
 
 const ChatDate = () => {
   const dateMessage = useMemo(() => {

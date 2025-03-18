@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "../../../widget/Header/ui/Header";
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "../../../widget/Sidebar";
-import { Highlight, themes } from "prism-react-renderer";
-import { ChatForm } from "../../../features/ChatForm";
-import Chat from "../../../widget/Chat/ui/Chat";
+
 
 const pythonCode = `
 #include <iostream> 
@@ -104,9 +102,7 @@ const Layout = () => {
       <Sidebar />
       <div className="row__content">
         <Header />
-        {/* <Outlet /> */}
-        <Chat />
-        <ChatForm />
+        <Outlet />
       </div>
     </div>
   );

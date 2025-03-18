@@ -8,7 +8,7 @@ const AppRouter = () => {
     <Routes>
       <Route element={<Layout />}>
         {routerConfig.map(({ element, path }) => (
-          <Route element={element} path={path} />
+          <Route key={path} element={element} path={path} />
         ))}
       </Route>
     </Routes>

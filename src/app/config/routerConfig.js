@@ -1,8 +1,9 @@
-import { Welcome } from "../../pages/Welcome";
+import { Chat } from "../../features/Chat";
+
 
 export const routerConfig = [
     {
         path:'/',
-        element:<Welcome />
+        element:<Chat />
     }
 ]

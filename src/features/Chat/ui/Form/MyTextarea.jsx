@@ -1,20 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
-import { scrollPosition } from "../../../shared/lib/scrollPosition/scrollPosition";
 
 function adjustHeight(el) {
   el.style.height = "auto";
-  el.style.height = el.scrollHeight + "px";
+  if (el.scrollHeight > 150) {
+    el.style.height = "150px";
+    el.style.overflowY = "scroll";
+  } else {
+    el.style.height = el.scrollHeight + "px";
+    el.style.overflowY = "hidden";
+  }
 }
 
 const MyTextarea = ({ text, setText }) => {
   const textareaRef = useRef(null);
 
   useEffect(() => {
+    if (!text.length) {
+      const el = textareaRef.current;
+      el.style.height = el.scrollHeight + "px";
+      el.style.overflowY = "hidden";
+    }
+  }, [text]);
+
+  useEffect(() => {
     const textarea = textareaRef.current;
     if (textarea) {
       const handleInput = () => {
         adjustHeight(textarea);
-        scrollPosition();
       };
       textarea.addEventListener("input", handleInput);
       return () => textarea.removeEventListener("input", handleInput);
@@ -25,7 +37,7 @@ const MyTextarea = ({ text, setText }) => {
     <textarea
       rows={1}
       value={text}
-      className="chat-form__textarea"
+      className="form__textarea"
       onChange={(e) => setText(e.target.value)}
       placeholder="Send a message"
       ref={textareaRef}

@@ -1,6 +1,8 @@
 .chat {
     flex-grow: 1;
     padding-top: 20px;
+    overflow-y: auto;
+    max-height: 72%;
 }
 
 .chat__messages {
@@ -25,8 +27,9 @@
 
 .chat__message-flex {
     display: flex;
-    gap: 12px ;
+    gap: 12px;
 }
+
 .chat__date {
     font-size: 14px;
     margin-bottom: 24px;
@@ -34,4 +37,10 @@
 
 .chat__user-message .chat__date {
     margin-bottom: 8px;
+}
+
+.chat__box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }

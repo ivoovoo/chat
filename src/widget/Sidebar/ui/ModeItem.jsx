@@ -11,7 +11,7 @@ const ModeItem = ({ active, title, text, handleClick }) => {
       />
       <div className="sidebar__item-wrapper">
         <h5 className="sidebar__item-title">{title}</h5>
-        <p className="sidebar__item-text">{text}</p>
+        {/* <p className="sidebar__item-text">{text}</p> */}
       </div>
     </button>
   );

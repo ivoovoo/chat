@@ -1,32 +1,28 @@
 import React, { useState } from "react";
 import { mode } from "../config/mode";
 import ModeItem from "./ModeItem";
+import { useDispatch, useSelector } from "react-redux";
+import { changeActiveName } from "../../../features/Chat";
 
 const Mode = () => {
-  const [modeItems, setModeItems] = useState([]);
+  const chat = useSelector((s) => s.chat?.messages) || {};
+  const chatKeys = Object.keys(chat);
+  const dispatch = useDispatch()
+  const chatActiveIndex = useSelector((s) => s.chat.activeName);
 
-  const handleClick = (i) => {
-    const newModeItems = modeItems.map((item, index) => {
-      if (i === index) {
-        item.active = true;
-      } else item.active = false;
-
-      return item;
-    });
-
-    setModeItems(newModeItems);
+  const handleClick = (key) => {
+    dispatch(changeActiveName(key));
   };
   return (
     <div className="sidebar__mode">
-     {modeItems.length > 0 && <h4 className="sidebar__mode-title">Mode</h4>}
+      {chatKeys.length > 0 && <h4 className="sidebar__mode-title">Mode</h4>}
       <div className="sidebar__items">
-        {modeItems.map(({ title, text, active }, index) => (
+        {chatKeys.map((title, index) => (
           <ModeItem
             key={title}
             title={title}
-            text={text}
-            active={active}
-            handleClick={() => handleClick(index)}
+            active={title == chatActiveIndex}
+            handleClick={() => handleClick(title)}
           />
         ))}
       </div>

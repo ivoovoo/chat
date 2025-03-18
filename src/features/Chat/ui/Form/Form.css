@@ -1,28 +1,32 @@
-.chat-form {
-    width: 100%;
-    margin: auto auto 0;
-
+.form {
+    width:calc(100% - 480px);
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    display: flex;
 }
 
-.chat-form__top {
+.form__top {
     display: flex;
     margin-bottom: 12px;
 }
 
-.chat-form__clear {
+.form__clear {
     gap: 0 10px;
     font-weight: 500;
     margin-left: auto;
 }
 
-.chat-form__message {
+.form__message {
     position: relative;
 }
 
-.chat-form__textarea {
+.form__textarea {
     width: 100%;
     height: auto;
     min-height: 44px;
+    max-height: 200px;
     font-size: 16px;
     box-sizing: border-box;
     border: 1px solid var(--border-color-3);
@@ -35,47 +39,59 @@
 }
 
 
-.chat-form__textarea:focus {
-    border: 1px solid var(--border-color-3);
+.form__textarea:focus {
+    outline: 1px solid var(--border-color-3);
 
 }
 
-.chat-form__input::placeholder {
+.form__input::placeholder {
     color: var(--secondary-color);
     font-size: 16px;
 
 }
 
-.chat-form__button {
+.form__button {
     width: 20px;
     height: 20px;
     position: absolute;
     bottom: 17px;
 }
 
-.chat-form__button.file {
+.form__button.file {
     left: 16px;
 }
 
-.chat-form__button.microphone {
+.form__button.microphone {
     right: 44px;
 }
 
-.chat-form__button.send,
-.chat-form__button.stop {
+.form__button.send,
+.form__button.stop {
     right: 16px;
 }
 
 
-.chat-form__loader {
+.form__loader {
     animation: rotation 1s linear infinite;
     position: absolute;
     left: 16px;
     bottom: 17px;
 }
 
+@media (max-width:1400px) {
+    .form {
+        width: calc(100% - 340px);
+    }
+}
+
+
+@media (max-width:1100px) {
+    .form {
+        width: 100%;
+    }
+}
 @media (max-width:768px) {
-    .chat-form__clear {
+    .form__clear {
         font-size: 14px;
         gap: 0 6px;
     }

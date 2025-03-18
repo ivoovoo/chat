@@ -4,6 +4,9 @@ export function scrollPosition() {
   const scrollPosition = rowContent.scrollTop + rowContent.offsetHeight;
 
   if (scrollHeight > scrollPosition) {
-    rowContent.scrollTop = scrollHeight;
+    rowContent.scrollTo({
+      top: rowContent.scrollHeight - 5,
+      behavior: "smooth",
+    });
   }
 }

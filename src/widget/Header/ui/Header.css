@@ -93,6 +93,11 @@
     line-height: 0;
 }
 
+.header__logo {
+    max-width: 48px;
+    max-height: 48px;
+    border-radius: 10px;
+}
 
 @media (max-width:1400px) {
     .header {

@@ -2,22 +2,17 @@ import React, { useEffect, useState } from "react";
 import Top from "./Top";
 import Message from "./Message";
 
-import "./ChatForm.css";
+import "./Form.css";
 
-const ChatForm = () => {
+const Form = ({ changedScrollFunc, generate, setGenerate }) => {
   const [files, setFiles] = useState([]);
-  useEffect(() => {
-
-  }, [files]);
+  useEffect(() => {}, [files]);
 
   return (
-    <div className="chat-form">
+    <div className="form">
       <div className="container">
         <Top />
-        <div
-          className="chat-form__files"
-          style={{ display: "flex", gap: "10px" }}
-        >
+        <div className="form__files" style={{ display: "flex", gap: "10px" }}>
           {files.map((file) => (
             <div>
               {file.type.startsWith("image/") && (
@@ -50,10 +45,15 @@ const ChatForm = () => {
             </div>
           ))}
         </div>
-        <Message setFiles={setFiles} />
+        <Message
+          setFiles={setFiles}
+          changedScrollFunc={changedScrollFunc}
+          generate={generate}
+          setGenerate={setGenerate}
+        />
       </div>
     </div>
   );
 };
 
-export default ChatForm;
+export default Form;

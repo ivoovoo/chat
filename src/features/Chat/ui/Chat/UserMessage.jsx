@@ -1,6 +1,6 @@
 import React from "react";
 import ChatDate from "./ChatDate";
-import Sprite from "../../../shared/ui/Sprite/Sprite";
+import Sprite from "../../../../shared/ui/Sprite/Sprite";
 
 const UserMessage = ({ item }) => {
   return (
