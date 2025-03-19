@@ -3,6 +3,7 @@ import Top from "./Top";
 import Message from "./Message";
 
 import "./Form.css";
+import Files from "./Files";
 
 const Form = ({ changedScrollFunc, generate, setGenerate }) => {
   const [files, setFiles] = useState([]);
@@ -12,39 +13,7 @@ const Form = ({ changedScrollFunc, generate, setGenerate }) => {
     <div className="form">
       <div className="container">
         <Top />
-        <div className="form__files" style={{ display: "flex", gap: "10px" }}>
-          {files.map((file) => (
-            <div>
-              {file.type.startsWith("image/") && (
-                <div>
-                  <img
-                    src={URL.createObjectURL(file)}
-                    alt={file.name}
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      marginBottom: "10px",
-                    }}
-                  />
-                </div>
-              )}
-
-              {file.type.startsWith("video/") && (
-                <div>
-                  <video
-                    src={`${URL.createObjectURL(file)}`}
-                    alt={file.name}
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      marginBottom: "10px",
-                    }}
-                  />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+        <Files files={files} setFiles={setFiles} />
         <Message
           setFiles={setFiles}
           changedScrollFunc={changedScrollFunc}

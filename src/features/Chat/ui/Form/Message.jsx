@@ -41,7 +41,7 @@ const Message = ({ setFiles, changedScrollFunc, generate, setGenerate }) => {
           <Sprite icon={"file"} width={20} height={20} />
         </div>
       )}
-      <MyTextarea text={text} setText={setText} />
+      <MyTextarea text={text} setText={setText} generate={generate} />
       {!generate && (
         <Microphone setText={setText} />
       )}

@@ -1,8 +1,8 @@
 .app.dark {
-    --page-background:#2C2C2E;
-    --header-background: #2C2C2E;
+    --page-background:#000;
+    --header-background: #000;
     --message-background: #F9F9F9;
-    --background-1:#000;
+    --background-1:#fff;
     --background-2:#F8F8F8;
 
 
@@ -12,7 +12,7 @@
     --secondary-color:#fff;
     --color-1:#00A739;
     --color-2:#D69D0B;
-    --color-3:#fff;
+    --color-3:#000;
 
     /* border */
 

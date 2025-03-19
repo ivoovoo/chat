@@ -1,13 +1,16 @@
 .chat {
     flex-grow: 1;
-    padding-top: 20px;
+    max-height: 75%;
     overflow-y: auto;
-    max-height: 72%;
+    margin-top: 91px;
 }
 
 .chat__messages {
     display: flex;
+    min-height: 100%;
+   
     flex-direction: column;
+    justify-content: flex-end;
     gap: 8px;
 }
 

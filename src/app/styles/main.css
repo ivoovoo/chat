@@ -23,10 +23,9 @@
 }
 
 .row__content {
+    height: 100dvh;
     display: flex;
     flex-grow: 1;
-    height: calc(100dvh - 92px);
-    margin-top: 92px;
 }
 
 

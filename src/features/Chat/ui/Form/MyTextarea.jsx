@@ -11,7 +11,7 @@ function adjustHeight(el) {
   }
 }
 
-const MyTextarea = ({ text, setText }) => {
+const MyTextarea = ({ text, setText, generate }) => {
   const textareaRef = useRef(null);
 
   useEffect(() => {
@@ -40,6 +40,7 @@ const MyTextarea = ({ text, setText }) => {
       className="form__textarea"
       onChange={(e) => setText(e.target.value)}
       placeholder="Send a message"
+      disabled={generate}
       ref={textareaRef}
     />
   );
