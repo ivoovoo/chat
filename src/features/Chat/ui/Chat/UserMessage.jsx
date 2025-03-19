@@ -1,8 +1,9 @@
 import React from "react";
 import ChatDate from "./ChatDate";
 import Sprite from "../../../../shared/ui/Sprite/Sprite";
+import PinAngle from "./PinAngle";
 
-const UserMessage = ({ item }) => {
+const UserMessage = ({ item, index }) => {
   return (
     <div className="chat__message chat__user-message">
       <div className="chat__wrapper">
@@ -13,9 +14,7 @@ const UserMessage = ({ item }) => {
         <button className="chat__edit">
           <Sprite width={24} height={24} icon={"edit"} />
         </button>
-        <button className="chat__pin-angle">
-          <Sprite width={24} height={24} icon={"pin-angle"} />
-        </button>
+        <PinAngle index={index} pin={item.pin}/>
       </div>
     </div>
   );

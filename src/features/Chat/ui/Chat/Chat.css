@@ -47,3 +47,12 @@
     flex-direction: column;
     gap: 8px;
 }
+
+
+.chat__pin-angle {
+    fill:var(--pin-angle)
+}
+
+.chat__pin-angle.active {
+    fill: #dcce0b;
+}

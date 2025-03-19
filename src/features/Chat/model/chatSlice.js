@@ -25,6 +25,7 @@ const chatSlice = createSlice({
         state.activeName = name;
         state.messages[state.activeName] = [];
       }
+      
       state.messages[state.activeName].push([
         {
           message: action.payload,
@@ -33,7 +34,6 @@ const chatSlice = createSlice({
       return state;
     },
     offWriting: (state, action) => {
-      console.log("offWrirtin");
       let lastItem =
         state.messages[state.activeName][
           state.messages[state.activeName].length - 1
@@ -47,6 +47,20 @@ const chatSlice = createSlice({
     },
     changeActiveName: (state, action) => {
       state.activeName = action.payload;
+      return state;
+    },
+    pinMessage: (state, action) => {
+      const stateActive = state.messages[state.activeName];
+      const index = action.payload;
+      const item = stateActive[index];
+
+      const newState = stateActive
+        .slice(0, index)
+        .concat(stateActive.slice(index + 1));
+      item[0].pin = true;
+      newState.push(item);
+      state.messages[state.activeName] = newState;
+
       return state;
     },
   },
@@ -66,5 +80,10 @@ const chatSlice = createSlice({
 });
 
 export default chatSlice.reducer;
-export const { addMessage, offWriting, resetChat, changeActiveName } =
-  chatSlice.actions;
+export const {
+  addMessage,
+  offWriting,
+  resetChat,
+  changeActiveName,
+  pinMessage,
+} = chatSlice.actions;
