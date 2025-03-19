@@ -1,20 +1,18 @@
-import React from "react";
+import React, {useMemo} from "react";
 import logo from "../assets/logo.png";
 import Navigation from "./Navigation";
 import { Link } from "react-router-dom";
 
 import "./Header.css";
 import Button from "../../Sidebar/ui/Button";
-import { useSelector } from "react-redux";
 
 const Header = () => {
-  const activeNumber = Math.floor(Math.random() * (150000 - 35000 + 1)) + 35000;
-  const formattedNumber = activeNumber
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  const formattedNumber = useMemo(() => {
+    const activeNumber =
+      Math.floor(Math.random() * (150000 - 35000 + 1)) + 35000;
+    return activeNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }, []);
 
-
-  
   return (
     <header className="header">
       <div className="header__left">

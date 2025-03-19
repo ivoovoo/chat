@@ -1,6 +1,7 @@
 import React from "react";
 
 const Files = ({files, setFiles}) => {
+
   return (
     <div className="form__files" style={{ display: "flex", gap: "10px" }}>
       {files.map((file) => (

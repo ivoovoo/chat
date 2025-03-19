@@ -1,0 +1,39 @@
+.chat__user-message {
+    color: var(--secondary-color);
+    text-align: end;
+
+
+}
+
+.chat__message-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.chat__date {
+    font-size: 14px;
+
+}
+
+
+
+.chat__pin-angle {
+    fill: var(--secondary-color)
+}
+
+.chat__pin-angle.active {
+    fill: #dcce0b;
+}
+
+.chat__edit {
+    stroke: var(--secondary-color);
+    fill: none;
+}
+
+.chat__edit.active {
+    stroke: #920e0e;
+    fill: none;
+}

@@ -8,7 +8,7 @@
 .chat__messages {
     display: flex;
     min-height: 100%;
-   
+
     flex-direction: column;
     justify-content: flex-end;
     gap: 8px;
@@ -19,28 +19,7 @@
     font-size: 18px;
 }
 
-.chat__user-message {
-    color: var(--secondary-color);
-    text-align: end;
-    display: flex;
-    gap: 0 16px;
-    align-items: flex-end;
-    justify-content: end;
-}
 
-.chat__message-flex {
-    display: flex;
-    gap: 12px;
-}
-
-.chat__date {
-    font-size: 14px;
-    margin-bottom: 24px;
-}
-
-.chat__user-message .chat__date {
-    margin-bottom: 8px;
-}
 
 .chat__box {
     display: flex;
@@ -49,10 +28,27 @@
 }
 
 
-.chat__pin-angle {
-    fill:var(--pin-angle)
+
+.chat__message-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 16px;
+    max-width: 660px;
+    margin-left: 40px;
 }
 
-.chat__pin-angle.active {
-    fill: #dcce0b;
+.chat__message-image {
+    flex-grow: 1;
+}
+
+.chat__message-image img {
+    width: 100%;
+
+}
+
+@media (max-width:768px) {
+    .chat__message-images {
+       margin-left: 0;
+       max-width: 100%;
+    }
 }

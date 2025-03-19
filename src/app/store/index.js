@@ -7,6 +7,8 @@ export default configureStore({
   reducer: {
     sidebar: sidebarSlice,
     chat: chatSlice,
-    theme:themeSlice
+    theme:themeSlice,
   },
 });
+
+

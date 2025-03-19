@@ -1,46 +1,45 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const sendMessageFetch = createAsyncThunk("SEND_MESSAGE", async () => {
-  return "Design development, UX/UI, and product design are all related terms in the field of design, but they refer to slightly different aspects of the design process. Design development refers...";
-});
+import image_1 from "../assets/image-1.png";
+import image_2 from "../assets/image-2.png";
+import image_3 from "../assets/image-3.png";
+import image_4 from "../assets/image-4.png";
+import { addMessageFunc } from "./utils/reducers/addMessageFunc";
+import { sendMessageFetch } from "./utils/asyncSendMessage/sendMessageFetch";
+import { sendMessageFulfilled } from "./utils/asyncSendMessage/sendMessageFulfilled";
+import { startGenerateFunc } from "./utils/reducers/startGenerateFunc";
+import { finishGenerateFunc } from "./utils/reducers/finishGenerateFunc";
+import { addEditItemFunc } from "./utils/reducers/addEditItemFunc";
+import { deleteEditItemFunc } from "./utils/reducers/deleteEditItem";
+import { pinMessageFunc } from "./utils/reducers/pinMessageFunc";
+
+export const sendMessageThunk = createAsyncThunk(
+  "SEND_MESSAGE",
+  sendMessageFetch
+);
+
+export const sendPictureFetch = createAsyncThunk(
+  "SEND_MESSAGE_IMAGES",
+  async () => {
+    return [image_1, image_2, image_3, image_4];
+  }
+);
 
 const chatSlice = createSlice({
   name: "CHAT",
   initialState: {
     messages: {},
     activeName: null,
+    generate: false,
+    editItem: {},
   },
   reducers: {
-    addMessage: (state, action) => {
-      const text = action.payload;
-      if (!state.activeName) {
-        const splitText = text.split(" ");
-        let name;
-        if (splitText.length > 3) {
-          name = splitText.slice(0, 3).join(" ") + "...";
-        } else {
-          name = splitText.join(" ");
-        }
-
-        state.activeName = name;
-        state.messages[state.activeName] = [];
-      }
-      
-      state.messages[state.activeName].push([
-        {
-          message: action.payload,
-        },
-      ]);
-      return state;
-    },
-    offWriting: (state, action) => {
-      let lastItem =
-        state.messages[state.activeName][
-          state.messages[state.activeName].length - 1
-        ];
-      lastItem[lastItem.length - 1].writing = false;
-      return state;
-    },
+    addMessage: addMessageFunc,
+    startGenerate: startGenerateFunc,
+    finishGenerate: finishGenerateFunc,
+    addEditItem: addEditItemFunc,
+    deleteEditItem: deleteEditItemFunc,
+    pinMessage: pinMessageFunc,
     resetChat: (state) => {
       state.activeName = null;
       return state;
@@ -49,31 +48,18 @@ const chatSlice = createSlice({
       state.activeName = action.payload;
       return state;
     },
-    pinMessage: (state, action) => {
-      const stateActive = state.messages[state.activeName];
-      const index = action.payload;
-      const item = stateActive[index];
-
-      const newState = stateActive
-        .slice(0, index)
-        .concat(stateActive.slice(index + 1));
-      item[0].pin = true;
-      newState.push(item);
-      state.messages[state.activeName] = newState;
-
-      return state;
-    },
   },
 
   extraReducers: (b) => {
-    b.addCase(sendMessageFetch.fulfilled, (state, action) => {
+    b.addCase(sendMessageThunk.fulfilled, sendMessageFulfilled);
+    b.addCase(sendPictureFetch.fulfilled, (state, action) => {
       const message = state.messages[state.activeName];
       message[message.length - 1].push({
         answer: true,
         message: action.payload,
         writing: true,
+        type: "image",
       });
-
       return state;
     });
   },
@@ -82,7 +68,10 @@ const chatSlice = createSlice({
 export default chatSlice.reducer;
 export const {
   addMessage,
-  offWriting,
+  startGenerate,
+  finishGenerate,
+  deleteEditItem,
+  addEditItem,
   resetChat,
   changeActiveName,
   pinMessage,

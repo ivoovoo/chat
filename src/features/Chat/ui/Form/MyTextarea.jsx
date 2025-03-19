@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 function adjustHeight(el) {
   el.style.height = "auto";
@@ -11,8 +12,15 @@ function adjustHeight(el) {
   }
 }
 
-const MyTextarea = ({ text, setText, generate }) => {
+const MyTextarea = ({ text, setText }) => {
   const textareaRef = useRef(null);
+  const { generate } = useSelector((s) => s.chat);
+
+  useEffect(() => {
+    if (generate && text.length) {
+      setText("");
+    }
+  }, [generate]);
 
   useEffect(() => {
     if (!text.length) {
@@ -35,10 +43,10 @@ const MyTextarea = ({ text, setText, generate }) => {
 
   return (
     <textarea
-      rows={1}
-      value={text}
       className="form__textarea"
+      value={text}
       onChange={(e) => setText(e.target.value)}
+      rows={1}
       placeholder="Send a message"
       disabled={generate}
       ref={textareaRef}

@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sprite from "../../../../shared/ui/Sprite/Sprite";
 import MyTextarea from "./MyTextarea";
 import { useDropzone } from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
+import Microphone from "../Microphone/Microphone";
+import FormButton from "../FormButton/FormButton";
 
-import { finishGenerate, generateMessage } from "./model/chatFormSlice";
-import { addMessage, sendMessageFetch } from "../../model/chatSlice";
-import Microphone from "./Microphone";
+const Message = ({ setFiles }) => {
+  const { generate, editItem } = useSelector((s) => s.chat);
+  const [text, setText] = useState('');
 
-const Message = ({ setFiles, changedScrollFunc, generate, setGenerate }) => {
-  const [text, setText] = useState("");
+
+  useEffect(() => {
+    if(editItem.box) {
+      setText(editItem?.box[0].message)
+    }else if(!editItem.box && text.length) {
+      setText('')
+    }
+
+  },[editItem])
 
   const onDrop = (acceptedFiles) => {
     setFiles(acceptedFiles);
@@ -17,11 +26,7 @@ const Message = ({ setFiles, changedScrollFunc, generate, setGenerate }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: {
-      "image/*": [],
-      "video/*": [],
-      "audio/*": [],
-    },
+    accept: {},
   });
 
   const dispatch = useDispatch();
@@ -42,35 +47,9 @@ const Message = ({ setFiles, changedScrollFunc, generate, setGenerate }) => {
         </div>
       )}
       <MyTextarea text={text} setText={setText} generate={generate} />
-      {!generate && (
-        <Microphone setText={setText} />
-      )}
-      {generate ? (
-        <button
-          className="form__button stop"
-          type="button"
-          onClick={() => {
-            setGenerate(false);
-          }}
-        >
-          <Sprite icon={"stop"} width={20} height={20} />
-        </button>
-      ) : (
-        <button
-          className="form__button send"
-          type="button"
-          onClick={() => {
-            if(!text.length) return
-            dispatch(addMessage(text));
-            dispatch(sendMessageFetch(text));
-            changedScrollFunc();
-            setGenerate(true);
-            setText('')
-          }}
-        >
-          <Sprite icon={"chat-send"} width={20} height={20} />
-        </button>
-      )}
+      {!generate && <Microphone setText={setText} />}
+
+      <FormButton text={text} />
     </form>
   );
 };

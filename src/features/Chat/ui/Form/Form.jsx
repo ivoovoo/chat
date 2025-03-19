@@ -5,7 +5,7 @@ import Message from "./Message";
 import "./Form.css";
 import Files from "./Files";
 
-const Form = ({ changedScrollFunc, generate, setGenerate }) => {
+const Form = ({ changedScrollFunc }) => {
   const [files, setFiles] = useState([]);
   useEffect(() => {}, [files]);
 
@@ -17,8 +17,6 @@ const Form = ({ changedScrollFunc, generate, setGenerate }) => {
         <Message
           setFiles={setFiles}
           changedScrollFunc={changedScrollFunc}
-          generate={generate}
-          setGenerate={setGenerate}
         />
       </div>
     </div>

@@ -1,27 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Chat.css";
 import { useSelector } from "react-redux";
-import UserMessage from "./UserMessage";
-import AnswerMessage from "./AnswerMessage";
+import Box from "./Box";
 import Form from "../Form/Form";
+
+import "./Chat.css";
 
 const heights = {};
 
-const others = [];
-
 const Chat = () => {
   const chatActiveName = useSelector((s) => s.chat?.activeName);
-  const [changedScroll, setChangedScroll] = useState(false);
   const [generate, setGenerate] = useState(false);
-  const chat = useSelector((s) => s.chat.messages)[chatActiveName] || [];
-  const [filterChat, setFilterChat] = useState([
-    ...chat.filter((item) => {
-      const [firstItem] = item;
-      if (!firstItem.pin) return true;
-      others.push(item);
-    }),
-    ...others,
-  ]);
+  const chat = useSelector((s) => s.chat.messages);
 
   const chatRef = useRef();
   const messagesRef = useRef();
@@ -41,36 +30,15 @@ const Chat = () => {
     chatRef.current.scrollTo({
       top: messagesRef.current.scrollHeight,
     });
-    const others = [];
-    setFilterChat([
-      ...chat.filter((item) => {
-        const [firstItem] = item;
-        if (!firstItem.pin) return true;
-        others.push(item);
-      }),
-      ...others,
-    ]);
   }, [chat]);
 
   return (
     <div className="chat" ref={chatRef}>
       <div className="container chat__messages" ref={messagesRef}>
-        {filterChat.map((item, index) => (
-          <div className="chat__box" key={index}>
-            {item.map((m, boxIndex) => {
-              return m.answer ? (
-                <AnswerMessage
-                  key={boxIndex}
-                  item={m}
-                  setGenerate={setGenerate}
-                  generate={generate}
-                />
-              ) : (
-                <UserMessage key={boxIndex} item={m} index={index} />
-              );
-            })}
-          </div>
-        ))}
+        {chat[chatActiveName] &&
+          chat[chatActiveName].map((box, index) => (
+            <Box box={box} key={index} index={index} />
+          ))}
       </div>
 
       <Form
