@@ -1,69 +1,64 @@
 import { useState, useEffect, useRef } from "react";
 import Sprite from "../../../../shared/ui/Sprite/Sprite";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 
-function adjustHeight(el) {
-  el.style.height = "auto";
-  if (el.scrollHeight > 150) {
-    el.style.height = "150px";
-    el.style.overflowY = "scroll";
-  } else {
-    el.style.height = el.scrollHeight + "px";
-    el.style.overflowY = "hidden";
-  }
-}
-const Microphone = ({ setText }) => {
-  const [isListening, setIsListening] = useState(false);
-  const recognitionRef = useRef(null);
+const Microphone = ({ setText, setDisabled }) => {
+  const [intervalBool, setIntervalBool] = useState(false);
+  const [waveSurfer, setWaveSurfer] = useState(null);
+  const timerRef = useRef(null);
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
 
   useEffect(() => {
-    recognitionRef.current = new window.webkitSpeechRecognition();
-    recognitionRef.current.continuous = false; // Чтобы не было дублирования
-    recognitionRef.current.interimResults = false; // Отключает промежуточные результаты
-    recognitionRef.current.lang = navigator.language || navigator.userLanguage;
+    if (listening) {
+      let count = 0;
+      timerRef.current = setInterval(() => {
+        count++;
 
-    recognitionRef.current.onresult = (event) => {
-      const result = event.results[0][0].transcript;
-      console.log(result);
-      setText(result);
-      adjustHeight();
-    };
-
-    recognitionRef.current.onerror = (event) => {
-      console.error("Speech Recognition Error:", event.error);
-    };
-  }, []);
-
-  const startListening = () => {
-    if (recognitionRef.current) {
-      recognitionRef.current.start();
-      setIsListening(true);
+        const minutes = Math.floor(count / 60);
+        const seconds = count % 60;
+        setText(`${minutes}:${seconds < 10 ? "0" + seconds : seconds}`);
+        if (!listening) {
+          clearInterval(timerRef.current);
+        }
+      }, 1000);
+      setDisabled(true)
+    } else if (timerRef.current !== null) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
     }
-  };
+  }, [listening]);
 
-  const stopListening = () => {
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
-      setIsListening(false);
+  useEffect(() => {
+    if (!listening) {
+      setDisabled(false)
+      setText(transcript);
     }
-  };
+  }, [transcript, listening]);
 
   return (
     <>
-      {isListening ? (
+      {listening ? (
         <button
           className="form__button microphone"
           type="button"
-          onClick={stopListening}
+          onClick={() => SpeechRecognition.stopListening()}
         >
-          <Sprite icon={"microphone"} width={20} height={20} />
+          <Sprite icon="microphone" width={20} height={20} stroke="red" />
         </button>
       ) : (
         <button
           className="form__button microphone"
           type="button"
-          onClick={startListening}
+          onClick={() => SpeechRecognition.startListening({ continuous: true })}
         >
-          <Sprite icon={"microphone"} width={20} height={20} />
+          <Sprite icon="microphone" width={20} height={20} stroke="#919191" />
         </button>
       )}
     </>

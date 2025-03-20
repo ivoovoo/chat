@@ -16,7 +16,7 @@ const Content = () => {
       <Link className="sidebar__logo" to={"/"}>
         AI
       </Link>
-      <Mode />
+      <Mode switcher={switcher}/>
       <Select
         className="sidebar__select"
         list={["AI 1.01.01", "AI 11.11.11 ", "AI MAN", "AI WOMEN"]}

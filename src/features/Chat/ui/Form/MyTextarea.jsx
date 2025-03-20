@@ -12,7 +12,7 @@ function adjustHeight(el) {
   }
 }
 
-const MyTextarea = ({ text, setText }) => {
+const MyTextarea = ({ text, setText, disabled }) => {
   const textareaRef = useRef(null);
   const { generate } = useSelector((s) => s.chat);
 
@@ -48,7 +48,7 @@ const MyTextarea = ({ text, setText }) => {
       onChange={(e) => setText(e.target.value)}
       rows={1}
       placeholder="Send a message"
-      disabled={generate}
+      disabled={generate || disabled}
       ref={textareaRef}
     />
   );

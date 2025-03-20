@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Header from "../../../widget/Header/ui/Header";
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "../../../widget/Sidebar";
+import { classNames } from "../../../shared/lib/classNames/classNames";
+import { useSelector } from "react-redux";
 
 
 const pythonCode = `
@@ -96,11 +98,12 @@ switch(op) {
 
 const Layout = () => {
   const [codeHtml, setCodeHtml] = useState("");
+  const sidebar = useSelector(s => s.sidebar)
 
   return (
     <div className="row">
       <Sidebar />
-      <div className="row__content">
+      <div className={classNames("row__content",[], {"sidebar-open":sidebar})}>
         <Header />
         <Outlet />
       </div>

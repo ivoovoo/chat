@@ -3,6 +3,7 @@ import Hammer from "hammerjs";
 import Sprite from "../../../../shared/ui/Sprite/Sprite";
 
 import "./Gallery.css";
+import Dots from "./Dots";
 
 export default function Gallery({ files, setGallery }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,17 +25,6 @@ export default function Gallery({ files, setGallery }) {
   }, []);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "ArrowLeft") prevImage();
-      if (e.key === "ArrowRight") nextImage();
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  useEffect(() => {
-
     const content = contentRef.current;
 
     const clickOut = (e) => {
@@ -45,7 +35,7 @@ export default function Gallery({ files, setGallery }) {
 
     setTimeout(() => {
       window.addEventListener("click", clickOut);
-    }, 0); 
+    }, 0);
 
     return () => {
       window.removeEventListener("click", clickOut);
@@ -68,20 +58,11 @@ export default function Gallery({ files, setGallery }) {
         <button className="gallery__nav right" onClick={nextImage}>
           <Sprite width={40} height={40} icon="slide-next" />
         </button>
-
-        {images.length > 1 && (
-          <div className="gallery__dots">
-            {images.map((_, idx) => (
-              <span
-                key={idx}
-                className={`gallery__dot ${
-                  idx === currentIndex ? "active" : ""
-                }`}
-                onClick={() => setCurrentIndex(idx)}
-              />
-            ))}
-          </div>
-        )}
+        <Dots
+          images={images}
+          setCurrentIndex={setCurrentIndex}
+          currentIndex={currentIndex}
+        />
       </div>
     </div>
   );

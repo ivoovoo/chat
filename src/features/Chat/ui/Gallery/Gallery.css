@@ -59,7 +59,7 @@
 }
 
 .gallery__dot.active {
-    background: black;
+    background:var(--primary-color);
 }
 
 @media (max-width:768px) {
