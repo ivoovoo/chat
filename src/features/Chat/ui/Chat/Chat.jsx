@@ -43,8 +43,6 @@ const Chat = () => {
 
       <Form
         changedScrollFunc={() => {}}
-        setGenerate={setGenerate}
-        generate={generate}
       />
     </div>
   );

@@ -3,10 +3,10 @@ import Sprite from "../../../../shared/ui/Sprite/Sprite";
 import { finishGenerate } from "../../model/chatSlice";
 import { useDispatch } from "react-redux";
 
-const Stop = () => {
+const Stop = ({text}) => {
   const dispatch = useDispatch();
   const handleClick = () => {
-    dispatch(finishGenerate());
+    dispatch(finishGenerate(text));
   };
 
   return (

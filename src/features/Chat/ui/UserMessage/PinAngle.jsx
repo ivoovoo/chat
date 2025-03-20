@@ -10,6 +10,7 @@ const PinAngle = ({ index, pin }) => {
     <button
       className={classNames("chat__pin-angle", [], { active: pin })}
       onClick={() => {
+        console.log(index, 'index')
         dispatch(pinMessage(index));
       }}
     >

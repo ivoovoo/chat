@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { classNames } from "../../shared/lib/classNames/classNames";
-import AppRouter from "../router/ui/AppRouter";
-
-import "../styles/main.css";
 import { useEffect, useRef } from "react";
 import { clickOut } from "../../shared/lib/clickOut/clickOut";
 import { changeState } from "../../widget/Sidebar";
+import AppRouter from "../router/ui/AppRouter";
+import Hammer from "hammerjs";
+
+import "../styles/main.css";
 
 function App() {
   const appRef = useRef();
@@ -23,8 +24,13 @@ function App() {
 
   useEffect(() => {
     const app = appRef.current;
+    const hammer = new Hammer(app);
     app.addEventListener("click", handleClick);
-    return () => app.removeEventListener("click", handleClick);
+    hammer.on("swipe", handleClick);
+    return () => {
+      hammer.remove("swipe", handleClick);
+      app.removeEventListener("click", handleClick);
+    };
   }, [sidebar]);
 
   return (

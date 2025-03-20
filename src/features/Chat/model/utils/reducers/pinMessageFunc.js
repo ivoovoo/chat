@@ -12,14 +12,22 @@ export function pinMessageFunc(state, action) {
   const favorites = state.messages["Favorites"];
 
   if (item[0].pin) {
-    item[0].pin = false;
-    state.messages["Favorites"] = favorites.filter((favoritesItem) => {
-      return !areArraysEqual(item, favoritesItem);
+    state.messages["Favorites"] = favorites.filter(([firstEl]) => {
+      return item[0].id !== firstEl.id;
     });
+
+    const homeState = state.messages[item[0].activeName].find(
+      ([firstEl]) => firstEl.id === item[0].id
+    );
+
+    item[0].pin = false;
+    homeState[0].pin = false;
     return state;
   }
 
-  item[0].pin = true;
+
+  item[0].pin = true
+
   favorites.push(item);
 
   return state;

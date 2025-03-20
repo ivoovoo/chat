@@ -8,17 +8,18 @@ export function addMessageFunc(state, action) {
     let newMessages;
 
     if (index > 0) {
-      newMessages = messages
-        .slice(0, index)
-        .concat(messages.slice(index + 1));
+      newMessages = messages.slice(0, index).concat(messages.slice(index + 1));
     } else {
       newMessages = messages.slice(1);
     }
 
-  
-    newMessages.push([{
-      message:text
-    }]);
+    newMessages.push([
+      {
+        id: crypto.randomUUID(),
+        activeName: state.activeName,
+        message: text,
+      },
+    ]);
     state.messages[state.activeName] = newMessages;
     return state;
   }
@@ -38,6 +39,9 @@ export function addMessageFunc(state, action) {
 
   const newMessageBox = [
     {
+      pin: false,
+      id: crypto.randomUUID(),
+      activeName: state.activeName,
       message: action.payload,
     },
   ];

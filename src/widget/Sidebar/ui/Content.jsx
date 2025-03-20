@@ -8,7 +8,7 @@ import Button from "./Button";
 import Checks from "./Checks";
 
 const Content = () => {
-  const [switcher, changeSwitcher] = useState(true);
+  const [switcher, changeSwitcher] = useState(false);
 
   return (
     <div className="sidebar__content">

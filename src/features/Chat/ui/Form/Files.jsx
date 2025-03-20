@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import Gallery from "../Gallery/Gallery";
 
-const Files = ({files, setFiles}) => {
-
+const Files = ({ files, setFiles }) => {
+  const [gallery, setGallery] = useState(false);
   return (
     <div className="form__files" style={{ display: "flex", gap: "10px" }}>
       {files.map((file) => (
         <div>
           {file.type.startsWith("image/") && (
-            <div>
+            <div onClick={() => setGallery(true)}>
               <img
                 src={URL.createObjectURL(file)}
                 alt={file.name}
@@ -35,6 +36,8 @@ const Files = ({files, setFiles}) => {
           )}
         </div>
       ))}
+
+      {gallery && <Gallery files={files}  setGallery={setGallery} />}
     </div>
   );
 };

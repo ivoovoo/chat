@@ -20,7 +20,7 @@ const FormButton = ({ text }) => {
 
  const {generate} = useSelector(s => s.chat)
 
-  return <>{generate ? <Stop /> : <Send text={text} />}</>;
+  return <>{generate ? <Stop text={text} /> : <Send text={text} />}</>;
 };
 
 export default FormButton;
