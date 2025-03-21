@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { classNames } from "../../shared/lib/classNames/classNames";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { changePosition } from "../../widget/Sidebar";
 import { useSwipeable } from "react-swipeable";
 import { clickOut } from "../../shared/lib/clickOut/clickOut";
@@ -13,6 +13,27 @@ function App() {
   const { theme, positionSidebar } = useSelector((s) => s.sidebar);
 
   const appRef = useRef();
+  const useWindowHeight = () => {
+    const [height, setHeight] = useState(window.innerHeight);
+
+    useEffect(() => {
+      const handleResize = () => {
+        setHeight(window.innerHeight);
+      };
+
+      // Добавляем обработчик изменения размера окна
+      window.addEventListener("resize", handleResize);
+
+      // Удаляем обработчик при размонтировании компонента
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
+
+    return height;
+  };
+
+  useWindowHeight();
 
   const handleClick = (e) => {
     const target = e.target;
