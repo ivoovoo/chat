@@ -30,9 +30,7 @@ height: 100%;
 }
 
 .row__content {
-    display: flex;
     flex-grow: 1;
-    flex-direction: column;
     transition: .4s transform linear;
 }
 

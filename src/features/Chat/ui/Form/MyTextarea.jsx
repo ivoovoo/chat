@@ -31,16 +31,6 @@ const MyTextarea = ({ text, setText, disabled }) => {
     adjustHeight(textareaRef.current, text);
   }, [text]);
 
-  useEffect(() => {
-    const textarea = textareaRef.current;
-    // if (textarea) {
-    //   const handleInput = () => {
-    //     adjustHeight(textarea);
-    //   };
-    //   textarea.addEventListener("input", handleInput);
-    //   return () => textarea.removeEventListener("input", handleInput);
-    // }
-  }, []);
 
   return (
     <textarea
