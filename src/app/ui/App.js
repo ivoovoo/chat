@@ -5,8 +5,8 @@ import { changePosition } from "../../widget/Sidebar";
 import { useSwipeable } from "react-swipeable";
 import { clickOut } from "../../shared/lib/clickOut/clickOut";
 import AppRouter from "../router/ui/AppRouter";
-import { isMobile } from 'react-device-detect';
-import "../styles/main.css";
+import { isMobile } from "react-device-detect";
+// import "../styles/main.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -97,10 +97,6 @@ function App() {
 
 export default App;
 
-
-
-
-
 const ChatApp = () => {
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
@@ -124,36 +120,76 @@ const ChatApp = () => {
   }, []);
 
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <header style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '50px', backgroundColor: '#3498db', color: 'white', textAlign: 'center', zIndex: 100 }}>
+    <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
+      <header
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "50px",
+          backgroundColor: "#3498db",
+          color: "white",
+          textAlign: "center",
+          zIndex: 100,
+        }}
+      >
         Шапка
       </header>
 
-      <main style={{ flex: 1, paddingTop: '60px', paddingBottom: keyboardVisible ? '300px' : '10px', transition: 'padding-bottom 0.3s ease' }}>
-        <div style={{ flex: 1, overflowY: 'auto' }}>
+      <main
+        style={{
+          flex: 1,
+          paddingTop: "60px",
+          paddingBottom: keyboardVisible ? "300px" : "10px",
+          transition: "padding-bottom 0.3s ease",
+        }}
+      >
+        <div style={{ flex: 1, overflowY: "auto" }}>
           <p>Привет! 👋</p>
           <p>Как дела?</p>
         </div>
       </main>
 
-      <footer style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', padding: '10px', backgroundColor: '#fff', borderTop: '1px solid #ddd' }}>
+      <footer
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          padding: "10px",
+          backgroundColor: "#fff",
+          borderTop: "1px solid #ddd",
+        }}
+      >
         {isMobile ? (
           <input
             type="text"
             className="chat-input"
             placeholder="Введите сообщение..."
-            style={{ width: '100%', padding: '10px', fontSize: '16px', border: '1px solid #ccc', borderRadius: '5px' }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              fontSize: "16px",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+            }}
           />
         ) : (
           <input
             type="text"
             className="chat-input"
             placeholder="Введите сообщение..."
-            style={{ width: '100%', padding: '10px', fontSize: '16px', border: '1px solid #ccc', borderRadius: '5px' }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              fontSize: "16px",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+            }}
           />
         )}
       </footer>
     </div>
   );
 };
-
