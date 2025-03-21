@@ -1,19 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { changeState } from "../model/sidebarSlice";
-import { classNames } from "../../../shared/lib/classNames/classNames";
+import { useDispatch } from "react-redux";
+import { changePosition } from "../model/sidebarSlice";
 
-const Button = ({ forOpen }) => {
+const Button = () => {
   const dispatch = useDispatch();
-  const sidebar = useSelector((s) => s.sidebar);
   const handleClick = () => {
-    dispatch(changeState())
+    dispatch(changePosition(false));
   };
   return (
-    <button
-      className={classNames("sidebar__button", [], { open:forOpen })}
-      onClick={handleClick}
-    >
+    <button className={"sidebar__button"} onClick={handleClick}>
       <span></span>
       <span></span>
       <span></span>

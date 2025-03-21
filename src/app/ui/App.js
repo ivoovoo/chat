@@ -1,40 +1,64 @@
 import { useDispatch, useSelector } from "react-redux";
 import { classNames } from "../../shared/lib/classNames/classNames";
 import { useEffect, useRef } from "react";
+import { changePosition } from "../../widget/Sidebar";
+import { useSwipeable } from "react-swipeable";
 import { clickOut } from "../../shared/lib/clickOut/clickOut";
-import { changeState } from "../../widget/Sidebar";
 import AppRouter from "../router/ui/AppRouter";
-import Hammer from "hammerjs";
 
 import "../styles/main.css";
 
 function App() {
-  const appRef = useRef();
   const dispatch = useDispatch();
-  const theme = useSelector((s) => s.theme);
-  const sidebar = useSelector((s) => s.sidebar);
+  const {theme, positionSidebar} = useSelector((s) => s.sidebar);
+
+  const appRef = useRef();
 
   const handleClick = (e) => {
-    const closeSidebar = clickOut(e, sidebar);
+    const target = e.target;
+    if (target.classList.contains("header__sidebar-button")) {
+      return;
+    }
+    const closeSidebar = clickOut(e, positionSidebar);
 
     if (closeSidebar) {
-      dispatch(changeState(false));
+      dispatch(changePosition(false));
     }
   };
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      if (window.innerWidth < 1100 && positionSidebar) {
+        dispatch(changePosition(false));
+      }
+    },
+    onSwipedRight: () => {
+      if (window.innerWidth < 1100 && !positionSidebar) {
+        dispatch(changePosition(true));
+      }
+    },
+    onSwipedUp: () => {
+      if (positionSidebar) {
+        dispatch(changePosition(false));
+      }
+    },
+    onSwipedDown: () => {
+      if (positionSidebar) {
+        dispatch(changePosition(false));
+      }
+    },
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
+
   useEffect(() => {
-    const app = appRef.current;
-    const hammer = new Hammer(app);
-    app.addEventListener("click", handleClick);
-    hammer.on("swipe", handleClick);
-    return () => {
-      hammer.remove("swipe", handleClick);
-      app.removeEventListener("click", handleClick);
-    };
-  }, [sidebar]);
+    document.body.addEventListener("click", handleClick);
+
+    return () => document.body.removeEventListener("click", handleClick);
+  }, [positionSidebar]);
 
   return (
-    <div className={classNames("app", [theme])} ref={appRef}>
+    <div className={classNames("app", [theme])} ref={appRef} {...swipeHandlers}>
       {<AppRouter />}
     </div>
   );

@@ -1,4 +1,4 @@
 import Sidebar from "./ui/Sidebar";
-import sidebarSlice, {changeState} from "./model/sidebarSlice";
+import sidebarSlice, {changePosition} from "./model/sidebarSlice";
 
-export { Sidebar, sidebarSlice, changeState };
+export { Sidebar, sidebarSlice, changePosition };

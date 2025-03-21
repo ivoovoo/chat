@@ -1,14 +1,12 @@
 .chat {
     flex-grow: 1;
-    max-height: 65%;
     overflow-y: auto;
-    margin-top: 91px;
+    margin: 10px 0;
 }
 
 .chat__messages {
     display: flex;
     min-height: 100%;
-
     flex-direction: column;
     justify-content: flex-end;
     gap: 8px;

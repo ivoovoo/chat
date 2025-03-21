@@ -3,12 +3,13 @@ import Gallery from "../Gallery/Gallery";
 
 const Files = ({ files, setFiles }) => {
   const [gallery, setGallery] = useState(false);
+  console.log(gallery);
   return (
     <div className="form__files" style={{ display: "flex", gap: "10px" }}>
       {files.map((file) => (
         <div>
           {file.type.startsWith("image/") && (
-            <div onClick={() => setGallery(true)}>
+            <button onClick={() => setGallery(true)}>
               <img
                 src={URL.createObjectURL(file)}
                 alt={file.name}
@@ -18,11 +19,11 @@ const Files = ({ files, setFiles }) => {
                   marginBottom: "10px",
                 }}
               />
-            </div>
+            </button>
           )}
 
           {file.type.startsWith("video/") && (
-            <div>
+            <button onClick={() => setGallery(true)}>
               <video
                 src={`${URL.createObjectURL(file)}`}
                 alt={file.name}
@@ -32,12 +33,12 @@ const Files = ({ files, setFiles }) => {
                   marginBottom: "10px",
                 }}
               />
-            </div>
+            </button>
           )}
         </div>
       ))}
 
-      {gallery && <Gallery files={files}  setGallery={setGallery} />}
+      {gallery && <Gallery files={files} setGallery={setGallery} />}
     </div>
   );
 };

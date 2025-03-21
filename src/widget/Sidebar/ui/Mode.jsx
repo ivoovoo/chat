@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { mode } from "../config/mode";
+import React from "react";
 import ModeItem from "./ModeItem";
 import { useDispatch, useSelector } from "react-redux";
 import { changeActiveName, FAVORITES_KEY } from "../../../features/Chat";
@@ -24,7 +23,7 @@ const Mode = ({ switcher }) => {
               <ModeItem
                 key={title}
                 title={title}
-                active={title == chatActiveName}
+                active={title === chatActiveName}
                 handleClick={() => handleClick(title)}
               />
             ))}
@@ -34,7 +33,7 @@ const Mode = ({ switcher }) => {
           {chat[FAVORITES_KEY] && (
             <ModeItem
               title={FAVORITES_KEY}
-              active={FAVORITES_KEY == chatActiveName}
+              active={FAVORITES_KEY === chatActiveName}
               handleClick={() => handleClick(FAVORITES_KEY)}
             />
           )}

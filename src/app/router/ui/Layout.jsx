@@ -97,13 +97,12 @@ switch(op) {
 // };
 
 const Layout = () => {
-  const [codeHtml, setCodeHtml] = useState("");
-  const sidebar = useSelector(s => s.sidebar)
+  const {positionSidebar} = useSelector(s => s.sidebar)
 
   return (
     <div className="row">
       <Sidebar />
-      <div className={classNames("row__content",[], {"sidebar-open":sidebar})}>
+      <div className={classNames("row__content",[], {"sidebar-open":positionSidebar})}>
         <Header />
         <Outlet />
       </div>

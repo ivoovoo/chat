@@ -5,7 +5,8 @@ import { finishGenerate } from "../../model/chatSlice";
 const TextMessage = ({ item }) => {
   const dispatch = useDispatch();
   const { message } = item;
-  const {generate} = useSelector((s) => s.chat);
+  const { generate } = useSelector((s) => s.chat);
+  const { inputSpeed } = useSelector((s) => s.sidebar);
   const chat = useSelector((s) => s.chat);
   const [stateMessage, setStateMessage] = useState(item.writing ? "" : message);
 
@@ -19,10 +20,10 @@ const TextMessage = ({ item }) => {
         clearInterval(interval);
         dispatch(finishGenerate());
       }
-    }, 20);
+    }, inputSpeed || 20);
 
     return () => clearInterval(interval);
-  }, [chat]);
+  }, [chat,inputSpeed]);
 
   return <div className="chat__message">{stateMessage}</div>;
 };

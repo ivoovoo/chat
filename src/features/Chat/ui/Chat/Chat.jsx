@@ -33,18 +33,17 @@ const Chat = () => {
   }, [chat]);
 
   return (
-    <div className="chat" ref={chatRef}>
-      <div className="container chat__messages" ref={messagesRef}>
-        {chat[chatActiveName] &&
-          chat[chatActiveName].map((box, index) => (
-            <Box box={box} key={index} index={index} />
-          ))}
+    <>
+      <div className="chat" ref={chatRef}>
+        <div className="container chat__messages" ref={messagesRef}>
+          {chat[chatActiveName] &&
+            chat[chatActiveName].map((box, index) => (
+              <Box box={box} key={index} index={index} />
+            ))}
+        </div>
       </div>
-
-      <Form
-        changedScrollFunc={() => {}}
-      />
-    </div>
+      <Form  />
+    </>
   );
 };
 

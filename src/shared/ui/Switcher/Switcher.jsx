@@ -2,6 +2,7 @@ import React from "react";
 import { classNames } from "../../lib/classNames/classNames";
 
 import "./Switcher.css";
+import Sprite from "../Sprite/Sprite";
 
 const Switcher = ({ first, second, className, bool, func }) => {
   return (
@@ -12,7 +13,8 @@ const Switcher = ({ first, second, className, bool, func }) => {
           active: bool,
         })}
       >
-        {first}
+        {first.title}
+        <Sprite icon={first.icon} width={16} height={16} />
       </button>
       <button
         onClick={() => func(false)}
@@ -20,7 +22,8 @@ const Switcher = ({ first, second, className, bool, func }) => {
           active: !bool,
         })}
       >
-        {second}
+        {second.title}
+        <Sprite icon={second.icon} width={16} height={16} />
       </button>
       <div
         className={classNames("switcher__background", [], {

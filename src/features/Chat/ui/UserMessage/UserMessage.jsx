@@ -3,7 +3,7 @@ import ChatDate from "./ChatDate";
 import PinAngle from "./PinAngle";
 import EditButton from "./EditButton";
 
-import './UserMessage.css'
+import "./UserMessage.css";
 
 const UserMessage = ({ item, index }) => {
   return (
@@ -13,7 +13,30 @@ const UserMessage = ({ item, index }) => {
         <EditButton index={index} item={item} />
         <PinAngle index={index} pin={item.pin} />
       </div>
-      <p className="chat__text"> {item.message}</p>
+      {item.message && (
+        <p
+          className="chat__text"
+          style={{ marginBottom: item.files.length > 0 && "15px" }}
+        >
+          {" "}
+          {item.message}
+        </p>
+      )}
+      {item.files && (
+        <div className="chat__files">
+          {item.files.map((item) => (
+            <div className="chat__file">
+              {item.type.startsWith("image/") && (
+                <img src={URL.createObjectURL(item)} alt={item.name} />
+              )}
+
+              {item.type.startsWith("video/") && (
+                <video src={`${URL.createObjectURL(item)}`} alt={item.name} />
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

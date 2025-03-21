@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Microphone from "../Microphone/Microphone";
 import FormButton from "../FormButton/FormButton";
 
-const Message = ({ setFiles }) => {
+const Message = ({ setFiles, files }) => {
   const { generate, editItem } = useSelector((s) => s.chat);
   const [text, setText] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -48,7 +48,7 @@ const Message = ({ setFiles }) => {
         <Microphone setText={setText} setDisabled={setDisabled} text={text} />
       )}
 
-      <FormButton text={text} />
+      <FormButton text={text} files={files} setFiles={setFiles}/>
     </form>
   );
 };

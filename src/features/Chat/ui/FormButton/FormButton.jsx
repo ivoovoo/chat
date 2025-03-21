@@ -1,26 +1,20 @@
 import React from "react";
-import Sprite from "../../../../shared/ui/Sprite/Sprite";
 import Send from "./Send";
 import { useSelector } from "react-redux";
 import Stop from "./Stop";
 
-const FormButton = ({ text }) => {
-  //   const sendFunc = () => {
-  //     () => {
-  //       if (!text.length) return;
-  //       dispatch(addMessage(text));
-  //       if (text == "Send picture") {
-  //         dispatch(sendPictureFetch());
-  //       } else dispatch(sendMessageFetch(text));
-  //       changedScrollFunc();
-  //       setGenerate(true);
-  //       setText("");
-  //     };
-  //   };
+const FormButton = ({ text, files, setFiles }) => {
+  const { generate } = useSelector((s) => s.chat);
 
- const {generate} = useSelector(s => s.chat)
-
-  return <>{generate ? <Stop text={text} /> : <Send text={text} />}</>;
+  return (
+    <>
+      {generate ? (
+        <Stop text={text} />
+      ) : (
+        <Send text={text} files={files} setFiles={setFiles} />
+      )}
+    </>
+  );
 };
 
 export default FormButton;

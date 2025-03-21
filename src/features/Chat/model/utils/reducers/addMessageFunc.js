@@ -1,5 +1,7 @@
 export function addMessageFunc(state, action) {
-  const text = action.payload;
+  const files = action.payload.files;
+  const text = action.payload.text;
+
 
   if (Object.keys(state.editItem).length) {
     const messages = state.messages[state.activeName];
@@ -42,7 +44,8 @@ export function addMessageFunc(state, action) {
       pin: false,
       id: crypto.randomUUID(),
       activeName: state.activeName,
-      message: action.payload,
+      message: text,
+      files,
     },
   ];
 

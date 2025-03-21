@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from "react";
-
-import "./Check.css";
+import React, { useState } from "react";
 import Sprite from "../Sprite/Sprite";
 import { classNames } from "../../lib/classNames/classNames";
 
-const Check = ({ children, className,checked, onClick = () => {} }) => {
+import "./Check.css";
+
+const Check = ({ children, className, checked, onClick = () => {} }) => {
   const [activeCheck, setActiveCheck] = useState(checked || false);
 
-const handleClick =() => {
-  onClick(!activeCheck);
-  setActiveCheck(!activeCheck)
-}
+  const handleClick = () => {
+    onClick(!activeCheck);
+    setActiveCheck(!activeCheck);
+  };
 
   return (
-    <button
-      className={classNames("check", [className])}
-      onClick={handleClick}
-    >
+    <button className={classNames("check", [className])} onClick={handleClick}>
       <Sprite
         icon={activeCheck ? "checked" : "empty-checked"}
         width={24}
