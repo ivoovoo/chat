@@ -70,22 +70,13 @@ body {
     overflow: hidden;
     transition: height 0.3s ease-in-out;
   }
-  
-  /* Фиксированная шапка */
-  /* Отключаем прокрутку body, чтобы избежать прыжков при открытии клавиатуры */
-html, body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    height: 100%;
-  }
-  
   /* Основной контейнер */
-  .app-container {
+.app-container {
     display: flex;
     flex-direction: column;
     width: 100%;
-    transition: height 0.3s ease-in-out;
+    height: 100vh;
+    overflow: hidden;
   }
   
   /* Фиксированная шапка */
@@ -109,7 +100,7 @@ html, body {
   .chat-container {
     flex: 1;
     overflow-y: auto;
-    margin-top: 50px; /* Учитываем высоту шапки */
+    margin-top: 50px;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -138,5 +129,9 @@ html, body {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+  }
+  
+  .keyboard-visible .chat-container {
+    margin-bottom: 300px; /* Поднимаем контент вверх */
   }
   

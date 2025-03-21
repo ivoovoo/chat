@@ -98,36 +98,38 @@ function App() {
 export default App;
 
 
+
+
 const ChatApp = () => {
-  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
 
   useEffect(() => {
-    const updateViewportHeight = () => {
-      if (window.visualViewport) {
-        setViewportHeight(window.visualViewport.height);
-        document.body.style.height = `${window.visualViewport.height}px`; // Фиксируем высоту body
-      }
+    const handleFocus = () => {
+      setKeyboardVisible(true);
+    };
+    
+    const handleBlur = () => {
+      setKeyboardVisible(false);
     };
 
-    window.visualViewport?.addEventListener("resize", updateViewportHeight);
-    window.visualViewport?.addEventListener("scroll", updateViewportHeight);
-    updateViewportHeight(); // Устанавливаем стартовое значение
+    const inputField = document.querySelector(".chat-input");
+    inputField.addEventListener("focus", handleFocus);
+    inputField.addEventListener("blur", handleBlur);
 
     return () => {
-      window.visualViewport?.removeEventListener("resize", updateViewportHeight);
-      window.visualViewport?.removeEventListener("scroll", updateViewportHeight);
+      inputField.removeEventListener("focus", handleFocus);
+      inputField.removeEventListener("blur", handleBlur);
     };
   }, []);
 
   return (
-    <div className="app-container" style={{ height: viewportHeight }}>
-      <header className="header">🔝 Фиксированная шапка</header>
+    <div className={`app-container ${keyboardVisible ? "keyboard-visible" : ""}`}>
+      <header className="header">🔝 Шапка</header>
 
       <main className="chat-container">
         <div className="chat-messages">
           <p>Привет! 👋</p>
           <p>Как дела?</p>
-          <p>Напиши мне!</p>
         </div>
       </main>
 
@@ -138,3 +140,4 @@ const ChatApp = () => {
   );
 };
 
+export default ChatApp;
