@@ -96,34 +96,27 @@ function App() {
 }
 
 export default App;
-
 const ChatApp = () => {
-  const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
   useEffect(() => {
-    const updateKeyboardHeight = () => {
+    const updateViewportHeight = () => {
       if (window.visualViewport) {
-        const newHeight = window.innerHeight - window.visualViewport.height;
-        setKeyboardHeight(newHeight > 0 ? newHeight : 0);
+        setViewportHeight(window.visualViewport.height);
       }
     };
 
-    window.visualViewport?.addEventListener("resize", updateKeyboardHeight);
-    return () =>
-      window.visualViewport?.removeEventListener(
-        "resize",
-        updateKeyboardHeight
-      );
+    window.visualViewport?.addEventListener("resize", updateViewportHeight);
+    updateViewportHeight(); // Установить начальное значение
+
+    return () => window.visualViewport?.removeEventListener("resize", updateViewportHeight);
   }, []);
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={{ height: viewportHeight }}>
       <header className="header">🔝 Фиксированная шапка</header>
 
-      <main
-        className="chat-container"
-        style={{ paddingBottom: `${keyboardHeight}px` }}
-      >
+      <main className="chat-container">
         <div className="chat-messages">
           <p>Привет! 👋</p>
           <p>Как дела?</p>
@@ -132,12 +125,9 @@ const ChatApp = () => {
       </main>
 
       <footer className="chat-input-container">
-        <input
-          type="text"
-          placeholder="Введите сообщение..."
-          className="chat-input"
-        />
+        <input type="text" placeholder="Введите сообщение..." className="chat-input" />
       </footer>
     </div>
   );
 };
+
