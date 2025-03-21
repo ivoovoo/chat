@@ -57,27 +57,41 @@ function App() {
     return () => document.body.removeEventListener("click", handleClick);
   }, [positionSidebar]);
 
+  const handleResize = () => {
+    if (window.innerHeight < 800) {
+      appRef.current.style.height = `${window.innerHeight}px`; // Уменьшаем высоту
+    } else {
+      appRef.current.style.height = "100vh"; // Восстанавливаем высоту
+    }
+  };
+
+  const handleFocus = () => {
+    handleResize(); // Перерасчитываем размер при фокусе на инпуте
+  };
+
+  const handleBlur = () => {
+    setTimeout(handleResize, 100); // Перерасчитываем размер после потери фокуса
+  };
+
   useEffect(() => {
     swipeHandlers.ref(appRef.current);
 
-    const handleResize = () => {
-      if (window.innerHeight < 800) {
-        appRef.current.style.height = `${window.innerHeight}px`; // Уменьшаем высоту
-      } else {
-        appRef.current.style.height = "100vh"; // Восстанавливаем высоту при закрытии клавиатуры
-      }
-    };
-
     window.addEventListener("resize", handleResize);
+    window.addEventListener("focus", handleFocus, true);
+    window.addEventListener("blur", handleBlur, true);
 
     // Вызываем handleResize сразу, чтобы при монтировании компонента установить правильную высоту
     handleResize();
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("focus", handleFocus, true);
+      window.removeEventListener("blur", handleBlur, true);
+    };
   }, []);
+
   return (
     <div className={classNames("app", [theme])} ref={appRef}>
-      
       {<AppRouter />}
     </div>
   );
