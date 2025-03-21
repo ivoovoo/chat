@@ -96,6 +96,9 @@ function App() {
 }
 
 export default App;
+import React, { useEffect, useState } from "react";
+import "./styles.css";
+
 const ChatApp = () => {
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
@@ -103,13 +106,18 @@ const ChatApp = () => {
     const updateViewportHeight = () => {
       if (window.visualViewport) {
         setViewportHeight(window.visualViewport.height);
+        document.body.style.height = `${window.visualViewport.height}px`; // Фиксируем высоту body
       }
     };
 
     window.visualViewport?.addEventListener("resize", updateViewportHeight);
-    updateViewportHeight(); // Установить начальное значение
+    window.visualViewport?.addEventListener("scroll", updateViewportHeight);
+    updateViewportHeight(); // Устанавливаем стартовое значение
 
-    return () => window.visualViewport?.removeEventListener("resize", updateViewportHeight);
+    return () => {
+      window.visualViewport?.removeEventListener("resize", updateViewportHeight);
+      window.visualViewport?.removeEventListener("scroll", updateViewportHeight);
+    };
   }, []);
 
   return (
