@@ -10,7 +10,7 @@ import "../styles/main.css";
 
 function App() {
   const dispatch = useDispatch();
-  const {theme, positionSidebar} = useSelector((s) => s.sidebar);
+  const { theme, positionSidebar } = useSelector((s) => s.sidebar);
 
   const appRef = useRef();
 
@@ -56,6 +56,18 @@ function App() {
 
     return () => document.body.removeEventListener("click", handleClick);
   }, [positionSidebar]);
+
+  useEffect(() => {
+    function updateViewportHeight() {
+      document.documentElement.style.setProperty(
+        "--vh",
+        `${window.innerHeight / 100}px`
+      );
+    }
+
+    window.addEventListener("resize", updateViewportHeight);
+    updateViewportHeight();
+  }, []);
 
   return (
     <div className={classNames("app", [theme])} ref={appRef} {...swipeHandlers}>
