@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Top from "./Top";
 import Message from "./Message";
 
 import "./Form.css";
 import Files from "./Files";
 
-const Form = () => {
-  const [files, setFiles] = useState([]);
-
+const Form = ({ files, setFiles }) => {
   return (
-    <div className="form">
+    <div className="form" >
       <div className="container">
-        <Top setFiles={setFiles}/>
+        <Top setFiles={setFiles} />
         <Files files={files} setFiles={setFiles} />
         <Message files={files} setFiles={setFiles} />
       </div>

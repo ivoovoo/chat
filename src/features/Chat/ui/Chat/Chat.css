@@ -2,6 +2,7 @@
     flex-grow: 1;
     overflow-y: auto;
     margin: 10px 0;
+    padding-bottom: 110px;
 }
 
 .chat__messages {

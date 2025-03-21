@@ -9,9 +9,9 @@ const heights = {};
 
 const Chat = () => {
   const chatActiveName = useSelector((s) => s.chat?.activeName);
-  const [generate, setGenerate] = useState(false);
+  const formRef = useRef();
   const chat = useSelector((s) => s.chat.messages);
-
+  const [files, setFiles] = useState([]);
   const chatRef = useRef();
   const messagesRef = useRef();
 
@@ -34,7 +34,13 @@ const Chat = () => {
 
   return (
     <>
-      <div className="chat" ref={chatRef}>
+      <div
+        className="chat"
+        style={{
+          paddingBottom: files.length > 0 ? "180px" : "120px",
+        }}
+        ref={chatRef}
+      >
         <div className="container chat__messages" ref={messagesRef}>
           {chat[chatActiveName] &&
             chat[chatActiveName].map((box, index) => (
@@ -42,7 +48,7 @@ const Chat = () => {
             ))}
         </div>
       </div>
-      <Form  />
+      <Form files={files} setFiles={setFiles} />
     </>
   );
 };
