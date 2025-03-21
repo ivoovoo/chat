@@ -13,27 +13,6 @@ function App() {
   const { theme, positionSidebar } = useSelector((s) => s.sidebar);
 
   const appRef = useRef();
-  // const useWindowHeight = () => {
-  //   const [height, setHeight] = useState(window.innerHeight);
-
-  //   useEffect(() => {
-  //     const handleResize = () => {
-  //       setHeight(window.innerHeight);
-  //     };
-
-  //     // Добавляем обработчик изменения размера окна
-  //     window.addEventListener("resize", handleResize);
-
-  //     // Удаляем обработчик при размонтировании компонента
-  //     return () => {
-  //       window.removeEventListener("resize", handleResize);
-  //     };
-  //   }, []);
-
-  //   return height;
-  // };
-
-  // const height = useWindowHeight();
 
   const handleClick = (e) => {
     const target = e.target;
@@ -79,22 +58,25 @@ function App() {
   }, [positionSidebar]);
 
   useEffect(() => {
-    if(!appRef.current)return
-    window.addEventListener('resize', function() {
-      if (window.innerHeight < 500) { // Когда высота экрана становится меньше 500px
-        appRef.current.style.height = window.innerHeight + 'px'; // Уменьшаем высоту body
-      } else {
-        appRef.current.style.height = '100dvh'; // Восстанавливаем высоту при закрытии клавиатуры
-      }
-    });
-  }, []);
+    swipeHandlers.ref(appRef.current);
 
+    const handleResize = () => {
+      if (window.innerHeight < 672) {
+        appRef.current.style.height = `${window.innerHeight}px`; // Уменьшаем высоту
+      } else {
+        appRef.current.style.height = "100vh"; // Восстанавливаем высоту при закрытии клавиатуры
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Вызываем handleResize сразу, чтобы при монтировании компонента установить правильную высоту
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
-    <div
-      className={classNames("app", [theme])}
-      ref={appRef}
-      {...swipeHandlers}
-    >
+    <div className={classNames("app", [theme])} ref={appRef}>
       {<AppRouter />}
     </div>
   );
