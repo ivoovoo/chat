@@ -1,9 +1,10 @@
 .form {
     display: flex;
     justify-content: center;
-    position: sticky;
+    position: fixed;
     bottom: 20px;
     right: 0;
+    width: calc(100% - 480px);
 }
 
 .form__top {
@@ -101,7 +102,7 @@
 
 @media (max-width:1400px) {
     .form {
-        /* width: calc(100% - 340px); */
+        width: calc(100% - 340px);
     }
 }
 

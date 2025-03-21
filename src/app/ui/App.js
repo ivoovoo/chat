@@ -33,7 +33,7 @@ function App() {
     return height;
   };
 
-  useWindowHeight();
+  const height = useWindowHeight();
 
   const handleClick = (e) => {
     const target = e.target;
@@ -91,7 +91,12 @@ function App() {
   }, []);
 
   return (
-    <div className={classNames("app", [theme])} ref={appRef} {...swipeHandlers}>
+    <div
+      className={classNames("app", [theme])}
+      ref={appRef}
+      {...swipeHandlers}
+      style={{ height: height }}
+    >
       {<AppRouter />}
     </div>
   );
