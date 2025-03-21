@@ -3,12 +3,13 @@ import ButtonIcon from "../../../../shared/ui/ButtonIcon/ButtonIcon";
 import { useDispatch } from "react-redux";
 import { resetChat } from "../../model/chatSlice";
 
-const Top = () => {
+const Top = ({setFiles}) => {
   const dispatch = useDispatch();
   return (
     <div className="form__top">
       <ButtonIcon
         onClick={() => {
+          setFiles([])
           dispatch(resetChat());
         }}
         className={"form__clear"}

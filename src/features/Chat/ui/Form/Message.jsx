@@ -19,12 +19,9 @@ const Message = ({ setFiles, files }) => {
     }
   }, [editItem]);
 
-  const onDrop = (acceptedFiles) => {
-    setFiles(acceptedFiles);
-  };
-
   const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
+    onDrop: (acceptedFiles) => setFiles(acceptedFiles),
+    maxFiles: 5,
     accept: {},
   });
 
@@ -48,7 +45,7 @@ const Message = ({ setFiles, files }) => {
         <Microphone setText={setText} setDisabled={setDisabled} text={text} />
       )}
 
-      <FormButton text={text} files={files} setFiles={setFiles}/>
+      <FormButton text={text} files={files} setFiles={setFiles} />
     </form>
   );
 };

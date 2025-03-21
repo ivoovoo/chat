@@ -11,7 +11,7 @@ const Form = () => {
   return (
     <div className="form">
       <div className="container">
-        <Top />
+        <Top setFiles={setFiles}/>
         <Files files={files} setFiles={setFiles} />
         <Message files={files} setFiles={setFiles} />
       </div>
