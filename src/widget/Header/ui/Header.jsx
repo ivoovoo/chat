@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import logo from "../assets/logo.png";
 import Navigation from "./Navigation";
 import { Link } from "react-router-dom";
@@ -8,16 +8,25 @@ import { changePosition } from "../../Sidebar";
 import "./Header.css";
 
 const Header = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [windowS, windowSSet] = useState(0);
   const formattedNumber = useMemo(() => {
     const activeNumber =
       Math.floor(Math.random() * (150000 - 35000 + 1)) + 35000;
     return activeNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   }, []);
 
+  useEffect(() => {
+    if (window) windowSSet(window.innerHeight);
+
+    window.addEventListener("resize", () => {
+      if (window) windowSSet(window.innerHeight);
+    });
+  }, []);
+
   const handleClick = () => {
-    dispatch(changePosition(true))
-  }
+    dispatch(changePosition(true));
+  };
   return (
     <header className="header">
       <div className="header__left">
@@ -35,7 +44,8 @@ const Header = () => {
       <Navigation />
       <Link className="header__right-link">
         <div className="header__first-letters">GG</div>
-        Greg Gregor
+        {/* Greg Gregor */}
+        {windowS}
       </Link>
     </header>
   );
