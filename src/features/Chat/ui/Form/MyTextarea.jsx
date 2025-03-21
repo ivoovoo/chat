@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
-function adjustHeight(el) {
+function adjustHeight(el, text) {
   el.style.height = "auto";
   if (el.scrollHeight > 150) {
     el.style.height = "150px";
@@ -10,6 +10,11 @@ function adjustHeight(el) {
     el.style.height = el.scrollHeight + "px";
     el.style.overflowY = "hidden";
   }
+
+  // if (!text.length) {
+  //   el.style.height = el.scrollHeight + "px";
+  //   el.style.overflowY = "hidden";
+  // }
 }
 
 const MyTextarea = ({ text, setText, disabled }) => {
@@ -23,22 +28,18 @@ const MyTextarea = ({ text, setText, disabled }) => {
   }, [generate]);
 
   useEffect(() => {
-    if (!text.length) {
-      const el = textareaRef.current;
-      el.style.height = el.scrollHeight + "px";
-      el.style.overflowY = "hidden";
-    }
+    adjustHeight(textareaRef.current, text);
   }, [text]);
 
   useEffect(() => {
     const textarea = textareaRef.current;
-    if (textarea) {
-      const handleInput = () => {
-        adjustHeight(textarea);
-      };
-      textarea.addEventListener("input", handleInput);
-      return () => textarea.removeEventListener("input", handleInput);
-    }
+    // if (textarea) {
+    //   const handleInput = () => {
+    //     adjustHeight(textarea);
+    //   };
+    //   textarea.addEventListener("input", handleInput);
+    //   return () => textarea.removeEventListener("input", handleInput);
+    // }
   }, []);
 
   return (

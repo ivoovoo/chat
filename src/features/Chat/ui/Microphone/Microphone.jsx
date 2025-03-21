@@ -1,19 +1,23 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Sprite from "../../../../shared/ui/Sprite/Sprite";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 
+function adjustHeight(el) {
+  el.style.height = "auto";
+  if (el.scrollHeight > 150) {
+    el.style.height = "150px";
+    el.style.overflowY = "scroll";
+  } else {
+    el.style.height = el.scrollHeight + "px";
+    el.style.overflowY = "hidden";
+  }
+}
+
 const Microphone = ({ setText, setDisabled }) => {
-  const [intervalBool, setIntervalBool] = useState(false);
-  const [waveSurfer, setWaveSurfer] = useState(null);
   const timerRef = useRef(null);
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
+  const { transcript, listening, resetTranscript } = useSpeechRecognition();
 
   useEffect(() => {
     if (listening) {
@@ -28,7 +32,7 @@ const Microphone = ({ setText, setDisabled }) => {
           clearInterval(timerRef.current);
         }
       }, 1000);
-      setDisabled(true)
+      setDisabled(true);
     } else if (timerRef.current !== null) {
       clearInterval(timerRef.current);
       timerRef.current = null;
@@ -36,9 +40,10 @@ const Microphone = ({ setText, setDisabled }) => {
   }, [listening]);
 
   useEffect(() => {
-    if (!listening) {
-      setDisabled(false)
+    if (!listening && transcript.length) {
+      setDisabled(false);
       setText(transcript);
+      resetTranscript();
     }
   }, [transcript, listening]);
 

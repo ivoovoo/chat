@@ -3,6 +3,11 @@
 @import url(./themes/light.css);
 @import url(./themes/dark.css);
 
+html,
+body {
+    overscroll-behavior: none;
+}
+
 
 .app {
     font-family: 'Inter', sans-serif;
