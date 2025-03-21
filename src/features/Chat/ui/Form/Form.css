@@ -2,9 +2,15 @@
     display: flex;
     justify-content: center;
     position: fixed;
-    bottom: 20px;
+    bottom: 0;
+    padding-bottom: 0;
     right: 0;
     width: calc(100% - 480px);
+}
+
+.form .container {
+
+    background-color: var(--page-background);
 }
 
 .form__top {

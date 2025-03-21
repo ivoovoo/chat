@@ -31,6 +31,24 @@ const MyTextarea = ({ text, setText, disabled }) => {
     adjustHeight(textareaRef.current, text);
   }, [text]);
 
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  const handleResize = () => {
+    if (window.innerHeight < 500) {
+      // Обычно, клавиатура появляется, когда высота экрана меньше 500px
+      setKeyboardVisible(true);
+    } else {
+      setKeyboardVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <textarea
@@ -41,6 +59,9 @@ const MyTextarea = ({ text, setText, disabled }) => {
       placeholder="Send a message"
       disabled={generate || disabled}
       ref={textareaRef}
+      style={{
+        bottom: keyboardVisible ? "0" : "20px",
+      }}
     />
   );
 };
