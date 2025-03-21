@@ -13,27 +13,27 @@ function App() {
   const { theme, positionSidebar } = useSelector((s) => s.sidebar);
 
   const appRef = useRef();
-  const useWindowHeight = () => {
-    const [height, setHeight] = useState(window.innerHeight);
+  // const useWindowHeight = () => {
+  //   const [height, setHeight] = useState(window.innerHeight);
 
-    useEffect(() => {
-      const handleResize = () => {
-        setHeight(window.innerHeight);
-      };
+  //   useEffect(() => {
+  //     const handleResize = () => {
+  //       setHeight(window.innerHeight);
+  //     };
 
-      // Добавляем обработчик изменения размера окна
-      window.addEventListener("resize", handleResize);
+  //     // Добавляем обработчик изменения размера окна
+  //     window.addEventListener("resize", handleResize);
 
-      // Удаляем обработчик при размонтировании компонента
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }, []);
+  //     // Удаляем обработчик при размонтировании компонента
+  //     return () => {
+  //       window.removeEventListener("resize", handleResize);
+  //     };
+  //   }, []);
 
-    return height;
-  };
+  //   return height;
+  // };
 
-  const height = useWindowHeight();
+  // const height = useWindowHeight();
 
   const handleClick = (e) => {
     const target = e.target;
@@ -79,11 +79,12 @@ function App() {
   }, [positionSidebar]);
 
   useEffect(() => {
+    if(!appRef.current)return
     window.addEventListener('resize', function() {
       if (window.innerHeight < 500) { // Когда высота экрана становится меньше 500px
-        document.body.style.height = window.innerHeight + 'px'; // Уменьшаем высоту body
+        appRef.current.style.height = window.innerHeight + 'px'; // Уменьшаем высоту body
       } else {
-        document.body.style.height = '100%'; // Восстанавливаем высоту при закрытии клавиатуры
+        appRef.current.style.height = '100dvh'; // Восстанавливаем высоту при закрытии клавиатуры
       }
     });
   }, []);
@@ -93,7 +94,6 @@ function App() {
       className={classNames("app", [theme])}
       ref={appRef}
       {...swipeHandlers}
-      style={{ height: height }}
     >
       {<AppRouter />}
     </div>
