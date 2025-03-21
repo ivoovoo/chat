@@ -79,15 +79,13 @@ function App() {
   }, [positionSidebar]);
 
   useEffect(() => {
-    function updateViewportHeight() {
-      document.documentElement.style.setProperty(
-        "--vh",
-        `${window.innerHeight / 100}px`
-      );
-    }
-
-    window.addEventListener("resize", updateViewportHeight);
-    updateViewportHeight();
+    window.addEventListener('resize', function() {
+      if (window.innerHeight < 500) { // Когда высота экрана становится меньше 500px
+        document.body.style.height = window.innerHeight + 'px'; // Уменьшаем высоту body
+      } else {
+        document.body.style.height = '100%'; // Восстанавливаем высоту при закрытии клавиатуры
+      }
+    });
   }, []);
 
   return (
