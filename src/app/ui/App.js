@@ -61,7 +61,7 @@ function App() {
     swipeHandlers.ref(appRef.current);
 
     const handleResize = () => {
-      if (window.innerHeight < 672) {
+      if (window.innerHeight < 800) {
         appRef.current.style.height = `${window.innerHeight}px`; // Уменьшаем высоту
       } else {
         appRef.current.style.height = "100vh"; // Восстанавливаем высоту при закрытии клавиатуры
