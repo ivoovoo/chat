@@ -96,8 +96,7 @@ function App() {
 }
 
 export default App;
-import React, { useEffect, useState } from "react";
-import "./styles.css";
+
 
 const ChatApp = () => {
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
