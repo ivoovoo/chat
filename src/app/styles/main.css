@@ -15,8 +15,6 @@ body {
     background-color: var(--page-background);
     color: var(--primary-color);
     overflow: hidden;
-    position: relative;
-    z-index: 1000;
 }
 
 .container {
@@ -31,7 +29,7 @@ body {
 }
 
 .row__content {
-    height: 100dvh;
+    min-height: 100dvh;
     display: flex;
     flex-grow: 1;
     flex-direction: column;

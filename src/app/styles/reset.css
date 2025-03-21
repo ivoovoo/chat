@@ -1,15 +1,18 @@
+/* Убираем стандартные отступы и границы */
 * {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     border: none;
 }
 
+/* Универсальная коробочная модель */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
+/* Убираем стандартные стили ссылок */
 a {
     color: inherit;
     text-decoration: none;
@@ -19,7 +22,7 @@ a:hover {
     text-decoration: none;
 }
 
-
+/* Блочные элементы */
 aside,
 nav,
 footer,
@@ -29,41 +32,34 @@ main {
     display: block;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+/* Сбрасываем стили заголовков и параграфов */
+h1, h2, h3, h4, h5, h6, p {
     font-size: inherit;
     font-weight: inherit;
 }
 
-ul,
-ul li {
+/* Убираем маркеры списка */
+ul, ul li {
     list-style: none;
 }
 
+/* Корректируем отображение изображений */
 img {
     vertical-align: top;
 }
 
-img,
-svg {
+img, svg {
     max-width: 100%;
     height: auto;
 }
 
+/* Отключаем стили для address */
 address {
     font-style: normal;
 }
 
-
-input,
-textarea,
-button,
-select {
+/* Убираем стили для интерактивных элементов */
+input, textarea, button, select {
     font-family: inherit;
     font-size: inherit;
     color: inherit;
@@ -74,41 +70,40 @@ input::-ms-clear {
     display: none;
 }
 
-button,
-input[type="submit"] {
+/* Кнопки без фона и обводки */
+button, input[type="submit"] {
     display: inline-block;
     box-shadow: none;
-    background-color: transparent;
     background: none;
     cursor: pointer;
-
 }
 
-input:focus,
-input:active,
-button:focus,
-button:active {
+/* Убираем стили фокуса */
+input:focus, input:active,
+button:focus, button:active,
+a:focus, a:active,
+[tabindex]:focus, [tabindex]:active {
     outline: none;
     box-shadow: none;
 }
 
+/* Для Firefox */
 button::-moz-focus-inner {
     padding: 0;
     border: 0;
 }
 
-button:focus {
+/* Опционально: убираем авто-обводку фокуса */
+button:focus-visible, a:focus-visible {
     outline: none;
 }
 
-button:focus-visible {
-    outline: auto;
-}
-
+/* Делаем label кликабельным */
 label {
     cursor: pointer;
 }
 
+/* Легенда блока формы */
 legend {
     display: block;
 }

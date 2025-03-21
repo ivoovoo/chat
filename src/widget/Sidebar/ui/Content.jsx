@@ -31,7 +31,7 @@ const Content = () => {
           icon: "collection",
         }}
         second={{
-          title: "main",
+          title: "Main",
           icon: "chat-alt",
         }}
       />
