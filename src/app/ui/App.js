@@ -72,29 +72,72 @@ function App() {
   const handleBlur = () => {
     setTimeout(handleResize, 100); // Перерасчитываем размер после потери фокуса
   };
-
   useEffect(() => {
-    swipeHandlers.ref(appRef.current);
+    const handleResize = () => {
+      const viewportHeight = window.visualViewport.height;
+      document.documentElement.style.setProperty(
+        "--vh",
+        `${viewportHeight * 0.01}px`
+      );
+    };
 
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("focus", handleFocus, true);
-    window.addEventListener("blur", handleBlur, true);
-
-    // Вызываем handleResize сразу, чтобы при монтировании компонента установить правильную высоту
+    window.visualViewport.addEventListener("resize", handleResize);
     handleResize();
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("focus", handleFocus, true);
-      window.removeEventListener("blur", handleBlur, true);
-    };
+    return () =>
+      window.visualViewport.removeEventListener("resize", handleResize);
   }, []);
-
   return (
     <div className={classNames("app", [theme])} ref={appRef}>
-      {<AppRouter />}
+      {/* {<AppRouter />} */}
+      <ChatApp />
     </div>
   );
 }
 
 export default App;
+
+const ChatApp = () => {
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+
+  useEffect(() => {
+    const updateKeyboardHeight = () => {
+      if (window.visualViewport) {
+        const newHeight = window.innerHeight - window.visualViewport.height;
+        setKeyboardHeight(newHeight > 0 ? newHeight : 0);
+      }
+    };
+
+    window.visualViewport?.addEventListener("resize", updateKeyboardHeight);
+    return () =>
+      window.visualViewport?.removeEventListener(
+        "resize",
+        updateKeyboardHeight
+      );
+  }, []);
+
+  return (
+    <div className="app-container">
+      <header className="header">🔝 Фиксированная шапка</header>
+
+      <main
+        className="chat-container"
+        style={{ paddingBottom: `${keyboardHeight}px` }}
+      >
+        <div className="chat-messages">
+          <p>Привет! 👋</p>
+          <p>Как дела?</p>
+          <p>Напиши мне!</p>
+        </div>
+      </main>
+
+      <footer className="chat-input-container">
+        <input
+          type="text"
+          placeholder="Введите сообщение..."
+          className="chat-input"
+        />
+      </footer>
+    </div>
+  );
+};
