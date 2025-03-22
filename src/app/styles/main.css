@@ -10,6 +10,10 @@ body {
 }
 
 
+#root {
+    height: 100%;
+}
+
 .app {
     font-family: 'Inter', sans-serif;
     font-size: 18px;
