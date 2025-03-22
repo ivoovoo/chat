@@ -7,22 +7,35 @@ import { changePosition } from "../../Sidebar";
 
 import "./Header.css";
 
+const useKeyboardSize = () => {
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const vh = window.visualViewport?.height || window.innerHeight;
+      const keyboardVisible = vh < window.innerHeight;
+      
+      setIsKeyboardOpen(keyboardVisible);
+      setKeyboardHeight(keyboardVisible ? window.innerHeight - vh : 0);
+    };
+
+    window.visualViewport?.addEventListener("resize", handleResize);
+    return () => window.visualViewport?.removeEventListener("resize", handleResize);
+  }, []);
+
+  return { keyboardHeight, isKeyboardOpen };
+};
+
 const Header = () => {
   const dispatch = useDispatch();
-  const [windowS, windowSSet] = useState(0);
   const formattedNumber = useMemo(() => {
     const activeNumber =
       Math.floor(Math.random() * (150000 - 35000 + 1)) + 35000;
     return activeNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   }, []);
 
-  useEffect(() => {
-    if (window) windowSSet(window.innerHeight);
-
-    window.addEventListener("resize", () => {
-      if (window) windowSSet(window.innerHeight);
-    });
-  }, []);
+const {keyboardHeight,isKeyboardOpen} =  useKeyboardSize()
 
   const handleClick = () => {
     dispatch(changePosition(true));
@@ -45,7 +58,8 @@ const Header = () => {
       <Link className="header__right-link">
         <div className="header__first-letters">GG</div>
         {/* Greg Gregor */}
-        {windowS}
+        {keyboardHeight}<br />
+        {isKeyboardOpen.toString()}
       </Link>
     </header>
   );

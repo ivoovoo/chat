@@ -6,13 +6,15 @@ import { useSwipeable } from "react-swipeable";
 import { clickOut } from "../../shared/lib/clickOut/clickOut";
 import AppRouter from "../router/ui/AppRouter";
 
-import '../styles/main.css'
+import "../styles/main.css";
+
+
+
 function App() {
   const dispatch = useDispatch();
   const { theme, positionSidebar } = useSelector((s) => s.sidebar);
 
   const appRef = useRef();
-
   const handleClick = (e) => {
     const target = e.target;
     if (target.classList.contains("header__sidebar-button")) {
