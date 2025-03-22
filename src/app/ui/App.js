@@ -8,8 +8,6 @@ import AppRouter from "../router/ui/AppRouter";
 
 import "../styles/main.css";
 
-
-
 function App() {
   const dispatch = useDispatch();
   const { theme, positionSidebar } = useSelector((s) => s.sidebar);
@@ -58,35 +56,8 @@ function App() {
     return () => document.body.removeEventListener("click", handleClick);
   }, [positionSidebar]);
 
-  const handleResize = () => {
-    if (window.innerHeight < 800) {
-      appRef.current.style.height = `${window.innerHeight}px`; // Уменьшаем высоту
-    } else {
-      appRef.current.style.height = "100vh"; // Восстанавливаем высоту
-    }
-  };
-
-  const handleFocus = () => {
-    handleResize(); // Перерасчитываем размер при фокусе на инпуте
-  };
-
-  const handleBlur = () => {
-    setTimeout(handleResize, 100); // Перерасчитываем размер после потери фокуса
-  };
   useEffect(() => {
-    const handleResize = () => {
-      const viewportHeight = window.visualViewport.height;
-      document.documentElement.style.setProperty(
-        "--vh",
-        `${viewportHeight * 0.01}px`
-      );
-    };
-
-    window.visualViewport.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () =>
-      window.visualViewport.removeEventListener("resize", handleResize);
+    swipeHandlers.ref(appRef.current);
   }, []);
   return (
     <div className={classNames("app", [theme])} ref={appRef}>

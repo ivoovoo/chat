@@ -13,7 +13,6 @@ body {
     font-size: 18px;
     background-color: var(--page-background);
     color: var(--primary-color);
-    min-height: 100dvh;
 }
 
 .container {
@@ -24,9 +23,9 @@ body {
 }
 
 .row {
+    min-height: 100dvh;
+
     display: flex;
-    height: 100%;
-    overflow: hidden;
 }
 
 .row__content {
