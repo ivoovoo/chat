@@ -27,26 +27,27 @@ const Header = () => {
     const handleResize = () => {
       const vh = window.visualViewport?.height || window.innerHeight;
       const keyboardVisible = vh < window.innerHeight;
-  
+
       setIsKeyboardOpen(keyboardVisible);
       setKeyboardHeight(keyboardVisible ? window.innerHeight - vh : 0);
-  
-      document.documentElement.style.setProperty("--app-height", `${vh}px`);
     };
-  
+
     window.visualViewport?.addEventListener("resize", handleResize);
     handleResize();
-  
+
     return () =>
       window.visualViewport?.removeEventListener("resize", handleResize);
   }, []);
-  
+
   useEffect(() => {
-    document.body.style.height = isKeyboardOpen
-      ? `calc(var(--app-height) - ${keyboardHeight}px)`
-      : "var(--app-height)";
+    const app = document.querySelector(".app");
+    if (app) {
+     document.documentElement.style.height = isKeyboardOpen
+        ? `calc(100dvh - ${keyboardHeight}px)`
+        : "100dvh";
+    }
   }, [keyboardHeight, isKeyboardOpen]);
-  
+
   const handleClick = () => {
     dispatch(changePosition(true));
   };
