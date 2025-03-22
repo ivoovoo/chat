@@ -15,7 +15,7 @@ body {
     background-color: var(--page-background);
     color: var(--primary-color);
     display: flex;
-    min-height: 400px;
+    min-height: var(--viewport-height, 100vh);
 
 }
 
@@ -37,7 +37,7 @@ body {
 
 
 @media (max-width:1100px) {
-    .app__content.sidebar-open {
+    .row__content.sidebar-open {
         transform: translateX(340px);
     }
 }
@@ -47,7 +47,7 @@ body {
         padding: 0 10px;
     }
 
-    .app__content.sidebar-open {
+    .row__content.sidebar-open {
         transform: translateX(300px);
     }
 }

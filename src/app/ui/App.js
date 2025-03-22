@@ -58,6 +58,25 @@ function App() {
 
   useEffect(() => {
     swipeHandlers.ref(appRef.current);
+
+    const resizeFunc = () => {
+      let initialHeight = window.innerHeight;
+      if (window.innerHeight < initialHeight) {
+        document.documentElement.style.setProperty(
+          "--viewport-height",
+          `${window.innerHeight}px`
+        );
+      } else {
+        document.documentElement.style.setProperty(
+          "--viewport-height",
+          `${initialHeight}px`
+        );
+      }
+    };
+
+    resizeFunc()
+   
+    window.addEventListener("resize",resizeFunc);
   }, []);
   return (
     <div className={classNames("app", [theme])} ref={appRef}>
