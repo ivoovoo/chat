@@ -6,6 +6,7 @@
 html,
 body {
     overscroll-behavior: none;
+    overflow: hidden;
 }
 
 
@@ -14,8 +15,7 @@ body {
     font-size: 18px;
     background-color: var(--page-background);
     color: var(--primary-color);
-    height: 100dvh;
-    overflow: hidden;
+    height: 100%;
 }
 
 .container {

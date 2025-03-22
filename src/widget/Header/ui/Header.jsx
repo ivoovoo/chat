@@ -38,16 +38,12 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    const app = document.querySelector(".app");
-    if (!app) return;
-  
     if (isKeyboardOpen) {
-      app.style.height = `calc(100dvh - ${keyboardHeight}px)`;
+      document.body.style.height = `calc(100dvh - ${keyboardHeight}px)`;
     } else {
-      app.style.height = "100dvh";
+      document.body.style.height = "100dvh";
     }
   }, [keyboardHeight, isKeyboardOpen]);
-  
 
   const handleClick = () => {
     dispatch(changePosition(true));
