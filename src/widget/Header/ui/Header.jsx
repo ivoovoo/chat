@@ -15,13 +15,14 @@ const useKeyboardSize = () => {
     const handleResize = () => {
       const vh = window.visualViewport?.height || window.innerHeight;
       const keyboardVisible = vh < window.innerHeight;
-      
+
       setIsKeyboardOpen(keyboardVisible);
       setKeyboardHeight(keyboardVisible ? window.innerHeight - vh : 0);
     };
 
     window.visualViewport?.addEventListener("resize", handleResize);
-    return () => window.visualViewport?.removeEventListener("resize", handleResize);
+    return () =>
+      window.visualViewport?.removeEventListener("resize", handleResize);
   }, []);
 
   return { keyboardHeight, isKeyboardOpen };
@@ -35,7 +36,16 @@ const Header = () => {
     return activeNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   }, []);
 
-const {keyboardHeight,isKeyboardOpen} =  useKeyboardSize()
+  const { keyboardHeight, isKeyboardOpen } = useKeyboardSize();
+
+  useEffect(() => {
+    const app = document.querySelector(".app");
+    if (isKeyboardOpen) {
+      app.style.height = `calc(100dvh - ${keyboardHeight})`;
+    } else {
+      app.style.height = `100dvh`;
+    }
+  }, [keyboardHeight, isKeyboardOpen]);
 
   const handleClick = () => {
     dispatch(changePosition(true));
@@ -58,7 +68,8 @@ const {keyboardHeight,isKeyboardOpen} =  useKeyboardSize()
       <Link className="header__right-link">
         <div className="header__first-letters">GG</div>
         {/* Greg Gregor */}
-        {keyboardHeight}<br />
+        {keyboardHeight}
+        <br />
         {isKeyboardOpen.toString()}
       </Link>
     </header>
