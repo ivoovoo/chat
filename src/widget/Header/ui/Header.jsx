@@ -24,26 +24,23 @@ const Header = () => {
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   useEffect(() => {
     const handleResize = () => {
-      const vh = window.visualViewport?.height || document.documentElement.clientHeight;
-      const keyboardVisible = vh < window.innerHeight; // проверяем, открыта ли клавиатура
-  
+      const vh =
+        window.visualViewport?.height || document.documentElement.clientHeight;
+      const keyboardVisible = vh < window.innerHeight; // Проверяем, открыта ли клавиатура
+
       setIsKeyboardOpen(keyboardVisible);
       setKeyboardHeight(keyboardVisible ? window.innerHeight - vh : 0);
-  
-      // Устанавливаем высоту для .app
-      const app = document.querySelector(".app");
-      if (app) {
-        // Если клавиатура открыта, уменьшаем высоту приложения на размер клавиатуры
-        app.style.height = keyboardVisible ? `${vh}px` : "100dvh";
-      }
+
+      // Устанавливаем новую высоту для .app
+      document.documentElement.style.setProperty("--app-height", `${vh}px`);
     };
-  
+
     window.visualViewport?.addEventListener("resize", handleResize);
-    handleResize(); // Инициализация при старте
-  
-    return () => window.visualViewport?.removeEventListener("resize", handleResize);
+    handleResize(); // Инициализируем сразу
+
+    return () =>
+      window.visualViewport?.removeEventListener("resize", handleResize);
   }, []);
-  
 
   useEffect(() => {
     const app = document.querySelector(".app");
