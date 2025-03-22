@@ -15,7 +15,7 @@ body {
     background-color: var(--page-background);
     color: var(--primary-color);
     display: flex;
-    min-height: 100dvh;
+    min-height: 400px;
 
 }
 
