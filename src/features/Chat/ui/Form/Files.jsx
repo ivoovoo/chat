@@ -3,7 +3,6 @@ import Gallery from "../Gallery/Gallery";
 
 const Files = ({ files, setFiles }) => {
   const [gallery, setGallery] = useState(false);
-  console.log(files,'files');
   return (
     <div className="form__files" style={{ display: "flex", gap: "10px" }}>
       {files.map((file) => (
