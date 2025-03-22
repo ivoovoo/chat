@@ -10,9 +10,8 @@ body {
 }
 
 
-#root,
-body {
-    height: 100%;
+#root {
+    height: 100dvh;
     overflow: hidden;
 }
 

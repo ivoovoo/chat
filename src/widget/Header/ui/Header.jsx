@@ -30,6 +30,8 @@ const Header = () => {
 
       setIsKeyboardOpen(keyboardVisible);
       setKeyboardHeight(keyboardVisible ? window.innerHeight - vh : 0);
+
+      document.documentElement.style.setProperty("--app-height", `${vh}px`);
     };
 
     window.visualViewport?.addEventListener("resize", handleResize);
@@ -42,9 +44,9 @@ const Header = () => {
   useEffect(() => {
     const app = document.querySelector(".app");
     if (app) {
-     document.documentElement.style.height = isKeyboardOpen
-        ? `calc(100dvh - ${keyboardHeight}px)`
-        : "100dvh";
+      app.style.height = isKeyboardOpen
+        ? `calc(100% - ${keyboardHeight}px)`
+        : "100%";
     }
   }, [keyboardHeight, isKeyboardOpen]);
 
