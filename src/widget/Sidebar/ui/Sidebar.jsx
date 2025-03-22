@@ -8,7 +8,7 @@ const Sidebar = () => {
   const {positionSidebar} = useSelector((s) => s.sidebar);
   return (
     <aside className={classNames("sidebar", [], { open: positionSidebar })}>
-      {/* <Content /> */}
+      <Content />
     </aside>
   );
 };

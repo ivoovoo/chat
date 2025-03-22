@@ -34,9 +34,9 @@ const Header = () => {
       document.documentElement.style.setProperty("--app-height", `${vh}px`);
   
       const app = document.querySelector(".app");
-      if (app) {
-        // Если клавиатура открыта, уменьшаем высоту приложения на высоту клавиатуры
-        app.style.height = keyboardVisible ? `${vh}px` : "100dvh";
+      if (app && keyboardVisible) {
+        app.style.paddingBottom  = keyboardHeight + 'px'
+        
       }
     };
   
