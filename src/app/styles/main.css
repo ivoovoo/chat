@@ -4,14 +4,16 @@
 @import url(./themes/dark.css);
 
 html,
-body {
-    overscroll-behavior: none;
-    overflow: hidden;
-}
-
-
+body,
 #root {
-    height: 100%;
+    height: var(--app-height);
+    overflow: hidden;
+    /* Убираем скролл */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: fixed;
+    /* Предотвращаем смещение */
 }
 
 .app {
