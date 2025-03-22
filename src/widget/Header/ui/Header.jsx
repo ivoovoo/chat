@@ -24,31 +24,27 @@ const Header = () => {
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   useEffect(() => {
     const handleResize = () => {
-      const vh =
-        window.visualViewport?.height || document.documentElement.clientHeight;
-      const keyboardVisible = vh < window.innerHeight;
-
+      const vh = window.visualViewport?.height || document.documentElement.clientHeight;
+      const keyboardVisible = vh < window.innerHeight; // Проверяем, открыта ли клавиатура
+  
       setIsKeyboardOpen(keyboardVisible);
       setKeyboardHeight(keyboardVisible ? window.innerHeight - vh : 0);
-
+  
+      // Устанавливаем новую высоту для .app
       document.documentElement.style.setProperty("--app-height", `${vh}px`);
+  
+      const app = document.querySelector(".app");
+      if (app) {
+        // Если клавиатура открыта, уменьшаем высоту приложения на высоту клавиатуры
+        app.style.height = keyboardVisible ? `${vh}px` : "100dvh";
+      }
     };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
+  
+    window.visualViewport?.addEventListener("resize", handleResize);
+    handleResize(); // Инициализируем сразу
+  
+    return () => window.visualViewport?.removeEventListener("resize", handleResize);
   }, []);
-
-  useEffect(() => {
-    const app = document.querySelector(".app");
-    if (app) {
-      app.style.height = isKeyboardOpen
-      ? `${window.visualViewport.height}px`
-      : "100dvh";
-    }
-  }, [keyboardHeight, isKeyboardOpen]);
-
   const handleClick = () => {
     dispatch(changePosition(true));
   };
