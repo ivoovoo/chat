@@ -37,7 +37,7 @@ const Chat = () => {
       <div
         className="chat"
         style={{
-          paddingBottom: files.length > 0 ? "180px" : "120px",
+          // paddingBottom: files.length > 0 ? "180px" : "120px",
         }}
         ref={chatRef}
       >
