@@ -34,7 +34,7 @@ const Header = () => {
       const app = document.querySelector(".app");
       if (app) {
         // Если клавиатура открыта, уменьшаем высоту приложения на размер клавиатуры
-        app.style.height = keyboardVisible ? `${vh}px` : "100vh";
+        app.style.height = keyboardVisible ? `${vh}px` : "100dvh";
       }
     };
   
