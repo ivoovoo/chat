@@ -100,13 +100,13 @@ const Layout = () => {
   const {positionSidebar} = useSelector(s => s.sidebar)
 
   return (
-    <div className="row">
+    <>
       <Sidebar />
-      <div className={classNames("row__content",[], {"sidebar-open":positionSidebar})}>
+      <div className={classNames("app__content",[], {"sidebar-open":positionSidebar})}>
         <Header />
         <Outlet />
       </div>
-    </div>
+    </>
   );
 };
 

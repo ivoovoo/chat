@@ -1,5 +1,5 @@
 export function scrollPosition() {
-  const rowContent = document.querySelector(".row__content");
+  const rowContent = document.querySelector(".app__content");
   const scrollHeight = rowContent.scrollHeight;
   const scrollPosition = rowContent.scrollTop + rowContent.offsetHeight;
 
