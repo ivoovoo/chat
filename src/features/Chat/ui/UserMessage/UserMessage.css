@@ -69,3 +69,11 @@
     display: block;
     object-fit: cover;
 }
+
+@media (max-width:768px) {
+
+
+    .chat__user-message {
+        padding: 16px 0;
+    }
+}

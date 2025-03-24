@@ -121,6 +121,8 @@
         transform: translateX(-100%);
         z-index: 50;
         transition: .4s transform linear;
+        top: 0;
+        bottom: 0;
     }
 
     .sidebar.open {

@@ -5,7 +5,7 @@ const PhotoMessage = ({ item }) => {
   return (
     <div className="chat__message-photos">
       <div className="chat__message-grid">
-        {item.message.map((image) => {
+        {item.photos.map((image) => {
           return (
             <div className="chat__message-photo">
               <img src={image} alt="image" />

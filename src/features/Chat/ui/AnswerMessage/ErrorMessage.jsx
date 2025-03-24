@@ -4,7 +4,7 @@ import Sprite from "../../../../shared/ui/Sprite/Sprite";
 const ErrorMessage = ({ item }) => {
   return (
     <div className="chat__error">
-      <p className="chat__error-text">Error: {item.message}</p>
+      <p className="chat__error-text">Error: {item.text}</p>
       <Sprite width={24} height={24} icon={'error'} />
     </div>
   );

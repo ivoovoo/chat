@@ -1,6 +1,5 @@
 import React from "react";
 import TextMessage from "./TextMessage";
-import PhotoMessage from "./PhotoMessage";
 
 import "./AnswerMessage.css";
 import ErrorMessage from "./ErrorMessage";
@@ -12,7 +11,6 @@ const AnswerMessage = ({ item }) => {
     <div className="chat__answer-message">
       <Top />
       {type === "answer" && <TextMessage item={item} />}
-      {/* {type === "photo" && <PhotoMessage item={item} />} */}
       {type === "error" && <ErrorMessage item={item} />}
     </div>
   );

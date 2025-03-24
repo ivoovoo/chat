@@ -10,9 +10,9 @@ export const useWriting = (setStateMessage, item) => {
     if (!generate || !item.writing) return;
     let i = 0;
     const interval = setInterval(() => {
-      setStateMessage((prev) => prev + item.message[i]);
+      setStateMessage((prev) => prev + item.text[i]);
       i++;
-      if (i >= item.message.length - 1 || !generate) {
+      if (i >= item.text.length - 1 || !generate) {
         clearInterval(interval);
         dispatch(finishGenerate());
       }

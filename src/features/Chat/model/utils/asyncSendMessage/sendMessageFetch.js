@@ -8,12 +8,12 @@ export async function sendMessageFetch(text) {
     return {
       type: "answer",
       text: "Design development, UX/UI, and product design are all related terms in the field of design, but they refer to slightly different aspects of the design process. Design development refers...",
-      photos: [image_1, image_2],
+      photos: [image_1, image_2,image_3,image_4],
     };
   }
 
   if (text === "Send error") {
-    return { type: "error", message: text };
+    return { type: "error", text };
   }
   return {
     type: "answer",
