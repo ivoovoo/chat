@@ -1,13 +1,10 @@
-import { areArraysEqual } from "../../../../../shared/lib/areArrayEqual/areArrayEqual";
 import { FAVORITES_KEY } from "../../constants/keys";
 
 export function pinMessageFunc(state, action) {
   if (!state.messages[FAVORITES_KEY]) {
     state.messages[FAVORITES_KEY] = [];
   }
-
   const index = action.payload;
-
   const messages = state.messages[state.activeName];
   const item = messages[index];
   const favorites = state.messages[FAVORITES_KEY];
@@ -21,14 +18,17 @@ export function pinMessageFunc(state, action) {
       ([firstEl]) => firstEl.id === item[0].id
     );
 
-    item[0].pin = false;
+    if (state) item[0].pin = false;
     homeState[0].pin = false;
+
+    if (!Object.keys(state.messages[FAVORITES_KEY]).length) {
+      delete state.messages[FAVORITES_KEY];
+      state.activeName = null;
+    }
     return state;
   }
 
-
-  item[0].pin = true
-
+  item[0].pin = true;
   favorites.push(item);
 
   return state;

@@ -1,31 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { finishGenerate } from "../../model/chatSlice";
+import React, { useState } from "react";
+
+import { useWriting } from "../../lib/hooks/useWriting";
 
 const TextMessage = ({ item }) => {
-  const dispatch = useDispatch();
-  const { message } = item;
-  const { generate } = useSelector((s) => s.chat);
-  const { inputSpeed } = useSelector((s) => s.sidebar);
-  const chat = useSelector((s) => s.chat);
-  const [stateMessage, setStateMessage] = useState(item.writing ? "" : message);
+  const { text } = item;
+  const [stateMessage, setStateMessage] = useState(item.writing ? "" : text);
 
-  useEffect(() => {
-    if (!generate || !item.writing) return;
-    let i = 0;
-    const interval = setInterval(() => {
-      setStateMessage((prev) => prev + item.message[i]);
-      i++;
-      if (i >= item.message.length - 1 || !generate) {
-        clearInterval(interval);
-        dispatch(finishGenerate());
-      }
-    }, inputSpeed || 20);
+  useWriting(setStateMessage, item);
 
-    return () => clearInterval(interval);
-  }, [chat,inputSpeed]);
-
-  return <div className="chat__message">{stateMessage}</div>;
+  return<>
+  <div className="chat__text">{stateMessage}</div>;
+  
+  
+  </> 
 };
 
 export default TextMessage;

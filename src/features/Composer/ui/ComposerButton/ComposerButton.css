@@ -1,0 +1,11 @@
+.composer__button {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    bottom: 17px;
+}
+
+.composer__button.send,
+.composer__button.stop {
+    right: 16px;
+}

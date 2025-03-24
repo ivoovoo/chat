@@ -1,0 +1,19 @@
+.composer__top {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.composer__clear {
+    gap: 0 10px;
+    font-weight: 500;
+    margin-left: auto;
+    fill: var(--primary-color);
+}
+
+
+@media (max-width:768px) {
+    .composer__clear {
+        font-size: 14px;
+        gap: 0 6px;
+    }
+}

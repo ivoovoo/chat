@@ -1,8 +1,7 @@
 .chat__user-message {
     color: var(--secondary-color);
     text-align: end;
-
-
+    padding: 24px 0;
 }
 
 .chat__message-flex {
@@ -17,8 +16,6 @@
     font-size: 14px;
 
 }
-
-
 
 .chat__pin-angle {
     fill: var(--secondary-color)

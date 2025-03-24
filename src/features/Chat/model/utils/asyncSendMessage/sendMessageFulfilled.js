@@ -1,12 +1,22 @@
 export function sendMessageFulfilled(state, action) {
-  const message = state.messages[state.activeName];
-
-  message[message.length - 1].push({
-    answer: true,
-    message: action.payload,
-    writing: true,
-    type: "text",
-  });
+  const activeMessage = state.messages[state.activeName];
+  const { type, text, photos } = action.payload;
+  if (type === "error") {
+    activeMessage[activeMessage.length - 1].push({
+      answer: true,
+      text,
+      type,
+    });
+    state.generate = false;
+  } else {
+    activeMessage[activeMessage.length - 1].push({
+      answer: true,
+      writing: true,
+      text,
+      photos,
+      type,
+    });
+  }
 
   if (Object.keys(state.editItem).length) {
     state.editItem = {};

@@ -9,7 +9,7 @@ const EditButton = ({ index }) => {
   const { editItem } = useSelector((s) => s.chat);
 
   const handleClick = () => {
-    if (Object.keys(editItem) && editItem.index === index) {
+    if (Object.keys(editItem).length && editItem.index === index) {
       dispatch(deleteEditItem());
       return
     }

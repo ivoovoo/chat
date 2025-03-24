@@ -1,0 +1,21 @@
+.composer__form {
+    position: relative;
+}
+
+
+.composer__loader {
+    animation: rotation 1s linear infinite;
+    position: absolute;
+    left: 16px;
+    bottom: 17px;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,18 @@
+.composer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.composer .container {
+    background-color: var(--page-background);
+}
+
+
+
+
+
+
+
+

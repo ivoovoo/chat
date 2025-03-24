@@ -18,6 +18,8 @@ a {
     text-decoration: none;
 }
 
+
+
 a:hover {
     text-decoration: none;
 }
@@ -101,57 +103,17 @@ a:active,
 [tabindex]:active {
     outline: none !important;
     box-shadow: none !important;
+    background-color: transparent;
+    -webkit-tap-highlight-color: transparent;
 
 }
 
-button {
-    /* Сбрасывает все стили, включая стили по умолчанию браузера */
-    -webkit-appearance: none;
-    /* Убирает браузерные стили для кнопок */
-    -moz-appearance: none;
-    /* Для Firefox */
-    appearance: none;
-    /* Стандартное поведение */
-    background: none;
-    /* Убирает фон */
-    border: none;
-    /* Убирает рамку */
-    padding: 0;
-    /* Убирает внутренние отступы */
-    font: inherit;
-    /* Наследует шрифт от родительского элемента */
-    cursor: pointer;
-    box-shadow: none;
-    /* Убирает тень при фокусе */
-}
 
-button:focus,
-button:active {
-    outline: none;
-    /* Убирает контур при фокусе */
-    box-shadow: none;
-    /* Убирает тень при фокусе */
-}
-
-button:disabled {
-    cursor: not-allowed;
-    /* Устанавливает курсор как "недоступный" */
-    opacity: 0.5;
-    /* Добавляет полупрозрачность для отключенной кнопки */
-}
-
-/* Для Firefox */
-button::-moz-focus-inner {
-    padding: 0;
-    border: 0;
-}
-
-/* Опционально: убираем авто-обводку фокуса */
-button:focus-visible,
-a:focus-visible {
-    outline: none;
-}
-
+/* button,
+input[type="button"],
+input[type="submit"] {
+    -webkit-tap-highlight-color: transparent;
+} */
 
 /* Делаем label кликабельным */
 label {

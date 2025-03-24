@@ -1,0 +1,22 @@
+.composer__textarea {
+    width: 100%;
+    height: auto;
+    min-height: 44px;
+    max-height: 200px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color-3);
+    border-radius: 8px;
+    background: var(--message-background);
+    padding: 10.5px 72px 4.5px 44px;
+    resize: none;
+    overflow: hidden;
+    line-height: 1.2;
+    color: #000;
+}
+
+
+.composer__textarea:focus {
+    outline: 1px solid var(--border-color-3);
+
+}

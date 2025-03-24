@@ -1,6 +1,6 @@
 .chat {
-    flex-grow: 1;
     overflow-y: auto;
+    flex-grow: 1;
     margin: 10px 0;
 }
 
@@ -12,13 +12,6 @@
     gap: 8px;
 }
 
-.chat__message {
-    padding: 24px 0;
-    font-size: 18px;
-}
-
-
-
 .chat__box {
     display: flex;
     flex-direction: column;
@@ -26,26 +19,9 @@
 }
 
 
-
-.chat__message-images {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px 16px;
-    max-width: 660px;
-    margin-left: 40px;
+.chat__text {
+    font-size: 18px;
 }
 
-.chat__message-image {
-    flex-grow: 1;
-}
 
-.chat__message-image img {
-    width: 100%;
-}
 
-@media (max-width:768px) {
-    .chat__message-images {
-       margin-left: 0;
-       max-width: 100%;
-    }
-}

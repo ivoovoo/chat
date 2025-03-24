@@ -1,5 +1,5 @@
 import React from "react";
-import ChatDate from "./ChatDate";
+import ChatDate from "../Chat/ChatDate";
 import PinAngle from "./PinAngle";
 import EditButton from "./EditButton";
 
@@ -7,7 +7,7 @@ import "./UserMessage.css";
 
 const UserMessage = ({ item, index }) => {
   return (
-    <div className="chat__message chat__user-message">
+    <div className="chat__user-message">
       <div className="chat__message-flex">
         <ChatDate />
         <EditButton index={index} item={item} />
