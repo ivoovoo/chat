@@ -23,7 +23,7 @@
     "react-swipeable": "^7.0.2",
     "react-textarea-autosize": "^8.5.8",
     "shiki": "^0.14.2",
-    "wavesurfer.js": "^7.9.1",
+    "wavesurfer.js": "^7.9.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

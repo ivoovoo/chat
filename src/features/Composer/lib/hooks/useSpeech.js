@@ -44,3 +44,4 @@ export const useSpeech = () => {
 
   return { startListening, listening, stopListening };
 };
+

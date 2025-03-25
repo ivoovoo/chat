@@ -4,7 +4,7 @@ import Select from "../../../shared/ui/Select/Select";
 import { Link } from "react-router-dom";
 import Switcher from "../../../shared/ui/Switcher/Switcher";
 import Button from "./Button";
-import Checks from "./Checks";
+import Checks from "./Checks/Checks";
 
 const Content = () => {
   const [switcher, changeSwitcher] = useState(false);

@@ -25,11 +25,6 @@ const Switcher = ({ first, second, className, bool, func }) => {
         {second.title}
         <Sprite icon={second.icon} width={16} height={16} />
       </button>
-      <div
-        className={classNames("switcher__background", [], {
-          position: bool,
-        })}
-      ></div>
     </div>
   );
 };

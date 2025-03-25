@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { adjustHeight } from "../../lib/adjustHeight";
 import { setText } from "../../model/composerSlice";
-import { addMessage, sendMessageThunk } from "../../../Chat";
 import { useSend } from "../../lib/hooks/useSend";
 
 import "./MyTextarea.css";

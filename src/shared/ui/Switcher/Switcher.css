@@ -7,6 +7,7 @@
     position: relative;
     padding: 4px;
     display: flex;
+    gap: 0 5px;
 }
 
 .switcher__button {
@@ -23,30 +24,28 @@
     justify-content: center;
     color: var(--secondary-color);
     fill: var(--secondary-color);
+    border-radius: 8px;
 }
+
 
 .switcher__button svg {
     flex-shrink: 0;
 }
 
-.switcher__background {
-    background: var(--background-1);
-    position: absolute;
-    width: calc(50% - 4px);
-    top: 4px;
-    bottom: 4px;
-    border-radius: 8px;
-    transition: .3s all;
-    left: calc(100% - 4px);
-    transform: translateX(-100%);
-}
-
-.switcher__background.position {
-    left: 4px;
-    transform: none;
-}
 
 .switcher__button.active {
     color: var(--color-3);
     fill: var(--color-3);
+    background: var(--background-1);
+}
+
+@media (max-width:768px) {
+ .switcher {
+    max-width: 200px;
+    height: 40px;
+ }   
+
+ .switcher__button {
+    font-size: 12px;
+ }
 }
