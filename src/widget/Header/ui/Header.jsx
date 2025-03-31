@@ -34,8 +34,8 @@ const Header = () => {
       </div>
       <Navigation />
       <Link className="header__right-link">
-        <div className="header__first-letters">GG</div>
-        Greg Gregor
+        <div className="header__first-letters">AI</div>
+        Active Intellect
       </Link>
     </header>
   );
