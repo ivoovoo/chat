@@ -14,9 +14,7 @@ const MyTextarea = () => {
   const { text, textareaDisabled } = useSelector((s) => s.composer);
 
   useEffect(() => {
-    textareaRef.current.addEventListener("input", adjustHeight);
-    return () =>
-      textareaRef.current.removeEventListener("input", adjustHeight);
+    adjustHeight(textareaRef.current);
   }, [text]);
 
   useEffect(() => {

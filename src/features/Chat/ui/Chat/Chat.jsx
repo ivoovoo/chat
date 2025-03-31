@@ -3,32 +3,23 @@ import { useSelector } from "react-redux";
 import Box from "./Box";
 
 import "./Chat.css";
+import {useScrollBehavior} from "../../lib/hooks/useScrollBehavior";
+
 
 
 const Chat = () => {
-  const chatActiveName = useSelector((s) => s.chat?.activeName);
-  const chat = useSelector((s) => s.chat.messages);
   const chatRef = useRef();
   const messagesRef = useRef();
+  const {messages,activeName} = useSelector((s) => s.chat);
+  useScrollBehavior(chatRef, messagesRef);
 
-  useEffect(() => {
-    chatRef.current.scrollTo({
-      top:chatRef.current.scrollHeight
-    })
-  
-  }, [chatActiveName]);
 
-  useEffect(() => {
-    chatRef.current.scrollTo({
-      top: messagesRef.current.scrollHeight,
-    });
-  }, [chat]);
 
   return (
     <div className="chat" ref={chatRef}>
       <div className="container chat__messages" ref={messagesRef}>
-        {chat[chatActiveName] &&
-          chat[chatActiveName].map((box, index) => (
+        {messages[activeName] &&
+            messages[activeName].map((box, index) => (
             <Box box={box} key={index} index={index} />
           ))}
       </div>

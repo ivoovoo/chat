@@ -1,10 +1,10 @@
-export function adjustHeight() {
-  this.style.height = "auto";
-  if (this.scrollHeight > 150) {
-    this.style.height = "150px";
-    this.style.overflowY = "scroll";
+export function adjustHeight(textarea) {
+  textarea.style.height = "auto";
+  if (textarea.scrollHeight > 150) {
+    textarea.style.height = "150px";
+    textarea.style.overflowY = "scroll";
   } else {
-    this.style.height = this.scrollHeight + "px";
-    this.style.overflowY = "hidden";
+    textarea.style.height = textarea.scrollHeight + "px";
+    textarea.style.overflowY = "hidden";
   }
 }
