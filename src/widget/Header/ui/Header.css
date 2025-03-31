@@ -59,13 +59,14 @@
     gap: 0 8px;
     font-size: 16px;
     color: var(--secondary-color);
+
+    stroke:var(--secondary-color);
     align-items: center;
-    stroke: var(--secondary-color);
-    fill: none;
 }
 
-.header__link.first {
-    color: var(--color-2);
+.header__link.active {
+    color: #0fce0f;
+    stroke: #0fce0f;
 }
 
 
